@@ -1,0 +1,331 @@
+/* Calendar Subscription Component Styles */
+/* MoonlightSage Aesthetic: Sage, Terracotta, Slate, Cream */
+
+.calendar-subscription {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.subscribe-button {
+  background: linear-gradient(135deg, #8b9d83 0%, #6b7d63 100%); /* Sage gradient */
+  color: #f8f5f0; /* Cream */
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 157, 131, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.subscribe-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 157, 131, 0.4);
+  background: linear-gradient(135deg, #9bae93 0%, #7b8d73 100%);
+}
+
+.subscribe-button:active {
+  transform: translateY(0);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Content */
+.modal-content {
+  background: #f8f5f0; /* Cream background */
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Modal Close Button */
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #4a5a52; /* Slate */
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(139, 157, 131, 0.1);
+  transform: rotate(90deg);
+}
+
+/* Modal Header */
+.modal-content h2 {
+  color: #4a5a52; /* Slate */
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.modal-description {
+  color: #6b7d73;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Timezone Selector */
+.timezone-selector {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.timezone-selector label {
+  display: block;
+  color: #4a5a52;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.timezone-selector select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #8b9d83;
+  border-radius: 10px;
+  background: white;
+  color: #4a5a52;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.timezone-selector select:focus {
+  outline: none;
+  border-color: #6b7d63;
+  box-shadow: 0 0 0 3px rgba(139, 157, 131, 0.1);
+}
+
+/* Subscription URL Display */
+.subscription-url-display {
+  margin: 1.5rem 0;
+}
+
+.subscription-url-display label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #4d5b4f;
+}
+
+.url-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #8b9d83;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  background: #fcfaf7;
+  color: #2c2c2c;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.url-input:focus {
+  outline: none;
+  border-color: #a0522d;
+}
+
+.url-input:hover {
+  background: #f5f2ed;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.primary-button,
+.secondary-button {
+  flex: 1;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #8b9d83 0%, #6b7d63 100%);
+  color: #f8f5f0;
+  box-shadow: 0 4px 12px rgba(139, 157, 131, 0.3);
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 157, 131, 0.4);
+}
+
+.secondary-button {
+  background: white;
+  color: #6b7d63;
+  border: 2px solid #8b9d83;
+}
+
+.secondary-button:hover {
+  background: rgba(139, 157, 131, 0.1);
+  border-color: #6b7d63;
+  transform: translateY(-2px);
+}
+
+/* Instructions Section */
+.instructions {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.instructions h3 {
+  color: #4a5a52;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.instruction-section {
+  margin-bottom: 1.5rem;
+}
+
+.instruction-section:last-child {
+  margin-bottom: 0;
+}
+
+.instruction-section h4 {
+  color: #6b7d63;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.instruction-section ol {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #4a5a52;
+}
+
+.instruction-section li {
+  margin-bottom: 0.3rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* Modal Footer */
+.modal-footer {
+  border-top: 1px solid rgba(139, 157, 131, 0.2);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.fine-print {
+  font-size: 0.85rem;
+  color: #6b7d73;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 2rem 1.5rem;
+    max-height: 95vh;
+  }
+  
+  .modal-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+  }
+  
+  .instructions {
+    padding: 1rem;
+  }
+}
+
+/* Scrollbar Styling for Modal */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(139, 157, 131, 0.1);
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #8b9d83;
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #6b7d63;
+}
