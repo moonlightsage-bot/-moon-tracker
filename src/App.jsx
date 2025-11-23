@@ -46,18 +46,18 @@ function App() {
     const month = date.getMonth() + 1
     const day = date.getDate()
     
-    if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return { name: "Aries", symbol: "♈︎", element: "Fire", modality: "Cardinal" }
-    if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return { name: "Taurus", symbol: "♉︎", element: "Earth", modality: "Fixed" }
-    if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return { name: "Gemini", symbol: "♊︎", element: "Air", modality: "Mutable" }
-    if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return { name: "Cancer", symbol: "♋︎", element: "Water", modality: "Cardinal" }
-    if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return { name: "Leo", symbol: "♌︎", element: "Fire", modality: "Fixed" }
-    if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return { name: "Virgo", symbol: "♍︎", element: "Earth", modality: "Mutable" }
-    if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return { name: "Libra", symbol: "♎︎", element: "Air", modality: "Cardinal" }
-    if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return { name: "Scorpio", symbol: "♏︎", element: "Water", modality: "Fixed" }
-    if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return { name: "Sagittarius", symbol: "♐︎", element: "Fire", modality: "Mutable" }
-    if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return { name: "Capricorn", symbol: "♑︎", element: "Earth", modality: "Cardinal" }
-    if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return { name: "Aquarius", symbol: "♒︎", element: "Air", modality: "Fixed" }
-    return { name: "Pisces", symbol: "♓︎", element: "Water", modality: "Mutable" }
+    if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return { name: "Aries", symbol: "♈︎", ruler: "Mars ♂", element: "Fire", modality: "Cardinal" }
+    if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return { name: "Taurus", symbol: "♉︎", ruler: "Venus ♀", element: "Earth", modality: "Fixed" }
+    if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return { name: "Gemini", symbol: "♊︎", ruler: "Mercury ☿", element: "Air", modality: "Mutable" }
+    if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return { name: "Cancer", symbol: "♋︎", ruler: "Moon ☽", element: "Water", modality: "Cardinal" }
+    if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return { name: "Leo", symbol: "♌︎", ruler: "Sun ☉", element: "Fire", modality: "Fixed" }
+    if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return { name: "Virgo", symbol: "♍︎", ruler: "Mercury ☿", element: "Earth", modality: "Mutable" }
+    if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return { name: "Libra", symbol: "♎︎", ruler: "Venus ♀", element: "Air", modality: "Cardinal" }
+    if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return { name: "Scorpio", symbol: "♏︎", ruler: "Mars ♂", element: "Water", modality: "Fixed" }
+    if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return { name: "Sagittarius", symbol: "♐︎", ruler: "Jupiter ♃", element: "Fire", modality: "Mutable" }
+    if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return { name: "Capricorn", symbol: "♑︎", ruler: "Saturn ♄", element: "Earth", modality: "Cardinal" }
+    if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return { name: "Aquarius", symbol: "♒︎", ruler: "Saturn ♄", element: "Air", modality: "Fixed" }
+    return { name: "Pisces", symbol: "♓︎", ruler: "Jupiter ♃", element: "Water", modality: "Mutable" }
   }
 
   const getDaysUntilNextPhase = (currentPhase) => {
@@ -94,61 +94,46 @@ function App() {
     return advice[phaseName] || "Align with the lunar rhythm."
   }
 
-  const getElementalAlchemy = (phaseQuality, signElement, signName, phaseName, modality) => {
-    // Now we focus on Sign Element + Phase Quality (not phase "element" which doesn't exist)
+  const getElementalAlchemy = (phaseQuality, signElement, signName, phaseName, modality, ruler) => {
+    // Clear descriptions based on sign + phase combination
     
-    const alchemyBySign = {
-      "Fire": {
-        alchemy: "Flames meet lunar tide — passion transforms through cycles",
-        qualities: {
-          "Waning Crescent": "Embers cooling — fire's intensity composted into wisdom before rebirth"
-        }
-      },
-      "Water": {
-        alchemy: "Tides pulling depths — emotions flow with Luna's rhythm",
-        qualities: {
-          "Waning Crescent": "Deep waters settling — shadow becomes fertile soil for new beginnings"
-        }
-      },
-      "Earth": {
-        alchemy: "Ground responds to celestial cycles — matter shaped by lunar time",
-        qualities: {
-          "Waning Crescent": "Matter composting — the body releases what's complete to feed the next season"
-        }
-      },
-      "Air": {
-        alchemy: "Breath shifts with lunar phases — thought moves with moonlight",
-        qualities: {
-          "Waning Crescent": "Whispers integrating — insights settle in silence before creation's next breath"
-        }
+    const getSignDescription = () => {
+      const signDescriptions = {
+        "Aries": "initiates with courage and raw creative fire",
+        "Taurus": "grounds through sensual presence and steadfast devotion",
+        "Gemini": "connects through curious inquiry and sacred communication",
+        "Cancer": "nurtures through emotional depth and ancestral memory",
+        "Leo": "radiates through authentic self-expression and generous heart",
+        "Virgo": "purifies through discerning service and devoted refinement",
+        "Libra": "balances through relationship and aesthetic harmony",
+        "Scorpio": "transforms through alchemical depth and shadow integration",
+        "Sagittarius": "expands through philosophical quest and adventurous faith",
+        "Capricorn": "builds through patient mastery and earned authority",
+        "Aquarius": "liberates through innovative vision and collective consciousness",
+        "Pisces": "dissolves through mystical surrender and boundless compassion"
       }
+      return signDescriptions[signName] || "brings unique energy"
     }
     
-    const signAlchemy = alchemyBySign[signElement] || alchemyBySign["Water"]
-    const specificAlchemy = signAlchemy.qualities[phaseName] || signAlchemy.alchemy
+    const alchemyDescription = `${signName} (ruled by ${ruler}) ${getSignDescription()}, while the ${phaseName} calls for ${phaseQuality.toLowerCase()}.`
     
-    // Meaning bullets specific to this sign + phase combo
+    // Clear meaning bullets
     const getMeaning = () => {
-      if (phaseName === "Waning Crescent" && signName === "Scorpio") {
-        return [
-          `${signName}'s deep ${signElement.toLowerCase()} insight`,
-          "The Waning Crescent's dissolution and surrender",
-          "Creating fertile ground for the next New Moon",
-          `Shadow work (${signName}) being composted into wisdom (${phaseName})`
-        ]
-      }
-      
-      // Clear, specific structure for other combinations
       return [
-        `${signName} brings ${signElement.toLowerCase()}'s energy: ${signElement === 'Fire' ? 'passion, will, transformation' : signElement === 'Water' ? 'depth, emotion, intuition' : signElement === 'Earth' ? 'grounding, manifestation, stability' : 'clarity, thought, communication'}`,
-        `${phaseName}: ${phaseQuality}`,
-        `${modality} ${signElement.toLowerCase()}: ${modality === 'Cardinal' ? 'initiates new cycles' : modality === 'Fixed' ? 'sustains and concentrates energy' : 'adapts and transforms'}`,
-        "Sign essence meeting phase rhythm in this moment"
+        `The Moon in ${signName} expresses through ${signElement.toLowerCase()}'s essence—${
+          signElement === 'Fire' ? 'will, passion, transformative heat' : 
+          signElement === 'Water' ? 'emotion, depth, intuitive flow' : 
+          signElement === 'Earth' ? 'form, stability, tangible manifestation' : 
+          'thought, communication, swift connection'
+        }`,
+        `${phaseName} phase energy: ${phaseQuality}`,
+        `${modality} modality ${modality === 'Cardinal' ? 'initiates action and begins new cycles' : modality === 'Fixed' ? 'sustains focus and concentrates power' : 'adapts flow and enables transition'}`,
+        `Planetary ruler ${ruler} governs this lunar expression`
       ]
     }
     
     return {
-      alchemy: specificAlchemy,
+      alchemy: alchemyDescription,
       meaning: getMeaning()
     }
   }
@@ -281,7 +266,7 @@ function App() {
           />
           <h2>{moonData.phaseInfo.name}</h2>
           <p className="illumination">{(moonData.illumination * 100).toFixed(1)}% Illuminated</p>
-          <p className="zodiac">Moon in {moonData.zodiacSign.name} {moonData.zodiacSign.symbol}</p>
+          <p className="zodiac">Moon in {moonData.zodiacSign.name} {moonData.zodiacSign.symbol} • Ruled by {moonData.zodiacSign.ruler}</p>
           <div className="days-until">
             <span>New Moon in {moonData.daysUntil.toNewMoon} days</span>
             <span className="separator">•</span>
@@ -313,7 +298,8 @@ function App() {
               moonData.zodiacSign.element,
               moonData.zodiacSign.name,
               moonData.phaseInfo.name,
-              moonData.zodiacSign.modality
+              moonData.zodiacSign.modality,
+              moonData.zodiacSign.ruler
             ).alchemy}
           </p>
           <div className="alchemy-meaning">
@@ -324,7 +310,8 @@ function App() {
                 moonData.zodiacSign.element,
                 moonData.zodiacSign.name,
                 moonData.phaseInfo.name,
-                moonData.zodiacSign.modality
+                moonData.zodiacSign.modality,
+                moonData.zodiacSign.ruler
               ).meaning.map((point, index) => (
                 <li key={index}>{point}</li>
               ))}
@@ -345,8 +332,28 @@ function App() {
 
         <div className="correspondences">
           <div className="correspondence-card">
-            <h4>Essential Oils</h4>
+            <h4>Phase Oils ({moonData.phaseInfo.name})</h4>
             <p>{moonData.phaseInfo.oils.join(", ")}</p>
+            <p className="oil-purpose">For {moonData.phaseInfo.quality.toLowerCase()}</p>
+          </div>
+
+          <div className="correspondence-card">
+            <h4>Sign Oils ({moonData.zodiacSign.name})</h4>
+            <p>
+              {moonData.zodiacSign.name === 'Aries' && 'Ginger, Black Pepper, Peppermint'}
+              {moonData.zodiacSign.name === 'Taurus' && 'Rose, Patchouli, Ylang Ylang'}
+              {moonData.zodiacSign.name === 'Gemini' && 'Lemon, Lavender, Basil'}
+              {moonData.zodiacSign.name === 'Cancer' && 'Rose, Sandalwood, Jasmine'}
+              {moonData.zodiacSign.name === 'Leo' && 'Bergamot, Frankincense, Cinnamon'}
+              {moonData.zodiacSign.name === 'Virgo' && 'Rosemary, Lavender, Eucalyptus'}
+              {moonData.zodiacSign.name === 'Libra' && 'Geranium, Ylang Ylang, Jasmine'}
+              {moonData.zodiacSign.name === 'Scorpio' && 'Patchouli, Cedarwood, Black Pepper'}
+              {moonData.zodiacSign.name === 'Sagittarius' && 'Clove, Cinnamon, Coriander'}
+              {moonData.zodiacSign.name === 'Capricorn' && 'Cedarwood, Patchouli, Vetiver'}
+              {moonData.zodiacSign.name === 'Aquarius' && 'Frankincense, Peppermint, Eucalyptus'}
+              {moonData.zodiacSign.name === 'Pisces' && 'Jasmine, Sandalwood, Myrrh'}
+            </p>
+            <p className="oil-purpose">For {moonData.zodiacSign.element} sign expression</p>
           </div>
           
           <div className="correspondence-card">
