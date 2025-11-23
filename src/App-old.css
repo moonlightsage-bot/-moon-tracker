@@ -1,0 +1,192 @@
+:root {
+  /* MoonlightSage Color Palette */
+  --sage: #8B9D83;
+  --terracotta: #C97D5D;
+  --slate: #4A5568;
+  --cream: #F5F1E8;
+  --moss: #5F7355;
+  --dusty-blue: #7C9BAF;
+  --rust: #A0522D;
+  --gold: #D4AF37;
+  
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: var(--cream);
+  --text-secondary: var(--sage);
+  --accent: var(--gold);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--slate) 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.2rem;
+  color: var(--sage);
+}
+
+.moon-tracker {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--sage);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: var(--gold);
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--sage);
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+main {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--moss);
+}
+
+.moon-display {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--slate);
+}
+
+.moon-icon {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.moon-display h2 {
+  font-size: 2rem;
+  color: var(--cream);
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.illumination {
+  color: var(--dusty-blue);
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.archetype-section {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: rgba(139, 157, 131, 0.1);
+  border-left: 3px solid var(--sage);
+  border-radius: 4px;
+}
+
+.archetype-section h3 {
+  color: var(--terracotta);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.wisdom {
+  color: var(--cream);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.element {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: var(--moss);
+  color: var(--cream);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.timestamp {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--slate);
+  color: var(--dusty-blue);
+  font-size: 0.95rem;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--sage);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.disclaimer {
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  color: var(--slate);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .moon-tracker {
+    padding: 1rem;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .moon-icon {
+    font-size: 4rem;
+  }
+  
+  .moon-display h2 {
+    font-size: 1.5rem;
+  }
+  
+  main {
+    padding: 2rem 1.5rem;
+  }
+  
+  .archetype-section {
+    padding: 1.5rem;
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.3s ease, background 0.3s ease;
+}
