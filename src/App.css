@@ -88,8 +88,11 @@ main {
 .moon-display {
   text-align: center;
   margin-bottom: 2rem;
+  padding: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid rgba(77, 91, 79, 0.2);
+  background: #000000;
+  border-radius: 12px;
 }
 
 .moon-image {
@@ -98,7 +101,6 @@ main {
   object-fit: contain;
   margin-bottom: 1.5rem;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-  mix-blend-mode: screen;
 }
 
 .moon-display h2 {
