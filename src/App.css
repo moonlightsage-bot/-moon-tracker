@@ -5,7 +5,7 @@
   --slate: #4A5568;
   --cream: #DBD6D0;
   --dusty-blue: #6C8392;
-  --gold: #D4AF37;
+  --gold: #DDC499;
   --white: #FFFFFF;
   --black: #000000;
   
@@ -24,7 +24,7 @@
 
 body {
   font-family: 'Georgia', 'Times New Roman', serif;
-  background: linear-gradient(135deg, var(--bg-primary) 0%, #2a3a3f 100%);
+  background: linear-gradient(135deg, #0a0a0a 0%, var(--bg-primary) 30%, #2a3a3f 100%);
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.6;
