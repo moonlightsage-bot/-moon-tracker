@@ -452,4 +452,67 @@ footer {
 .correspondence-card:hover {
   background: rgba(77, 91, 79, 0.2);
   border-color: rgba(212, 175, 55, 0.3);
+}/* Full Moon Harvest Note */
+.full-moon-harvest {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(212, 165, 116, 0.05));
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Navigation Section */
+.navigation-section {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.navigation-section h4 {
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.nav-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.nav-link {
+  display: block;
+  padding: 1rem;
+  background: rgba(212, 165, 116, 0.05);
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  border-radius: 8px;
+  color: var(--gold);
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  font-weight: 300;
+}
+
+.nav-link:hover {
+  background: rgba(212, 165, 116, 0.15);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    grid-template-columns: 1fr;
+  }
+  
+  .navigation-section {
+    padding: 1.5rem;
+  }
 }

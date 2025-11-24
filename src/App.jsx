@@ -80,18 +80,87 @@ function App() {
     }
   }
 
-  const getPracticalAdvice = (phaseName) => {
-    const advice = {
-      "New Moon": "Perfect time to plant seeds—both literal and metaphorical. Set intentions for the coming month.",
-      "Waxing Crescent": "Take your first steps. Small daily actions build momentum. Trust the process.",
-      "First Quarter": "Decision time. Choose your path and commit. Push through resistance.",
-      "Waxing Gibbous": "Refine and adjust. Almost there—patience in the final stretch brings perfection.",
-      "Full Moon": "Harvest what's ripe. Celebrate achievements. Release what no longer serves.",
-      "Waning Gibbous": "Share your wisdom. Teach what you've learned. Gratitude deepens the lessons.",
-      "Last Quarter": "Let go with grace. Forgive yourself and others. Make space for what's coming.",
-      "Waning Crescent": "Rest deeply. Dream and integrate. This is sacred composting time before renewal."
+  const getSignCrystals = (signName) => {
+    const crystals = {
+      "Aries": ["Carnelian", "Red Jasper", "Bloodstone"],
+      "Taurus": ["Rose Quartz", "Emerald", "Jade"],
+      "Gemini": ["Blue Lace Agate", "Sodalite", "Clear Quartz"],
+      "Cancer": ["Moonstone", "Selenite", "Pearl"],
+      "Leo": ["Sunstone", "Citrine", "Clear Quartz"],
+      "Virgo": ["Clear Quartz", "Blue Lace Agate", "Amazonite"],
+      "Libra": ["Rose Quartz", "Jade", "Moonstone"],
+      "Scorpio": ["Obsidian", "Garnet", "Black Tourmaline"],
+      "Sagittarius": ["Amethyst", "Lapis Lazuli", "Sodalite"],
+      "Capricorn": ["Black Tourmaline", "Onyx", "Hematite"],
+      "Aquarius": ["Amethyst", "Black Tourmaline", "Labradorite"],
+      "Pisces": ["Amethyst", "Aquamarine", "Moonstone"]
     }
-    return advice[phaseName] || "Align with the lunar rhythm."
+    return crystals[signName] || ["Clear Quartz", "Amethyst", "Rose Quartz"]
+  }
+
+  const getSignOils = (signName) => {
+    const oils = {
+      "Aries": ["Ginger", "Black Pepper", "Peppermint", "Rosemary", "Bergamot"],
+      "Taurus": ["Rose", "Patchouli", "Ylang Ylang", "Vanilla", "Geranium"],
+      "Gemini": ["Lemon", "Lavender", "Basil", "Peppermint", "Eucalyptus"],
+      "Cancer": ["Rose", "Sandalwood", "Jasmine", "Chamomile", "Ylang Ylang"],
+      "Leo": ["Bergamot", "Frankincense", "Cinnamon", "Wild Orange", "Rosemary"],
+      "Virgo": ["Rosemary", "Lavender", "Eucalyptus", "Peppermint", "Tea Tree"],
+      "Libra": ["Geranium", "Ylang Ylang", "Jasmine", "Rose", "Palmarosa"],
+      "Scorpio": ["Patchouli", "Cedarwood", "Black Pepper", "Vetiver", "Myrrh"],
+      "Sagittarius": ["Clove", "Cinnamon", "Wild Orange", "Coriander", "Frankincense", "Ginger", "Melissa"],
+      "Capricorn": ["Cedarwood", "Patchouli", "Vetiver", "Myrrh", "Cypress"],
+      "Aquarius": ["Frankincense", "Peppermint", "Eucalyptus", "Lavender", "Tea Tree"],
+      "Pisces": ["Jasmine", "Sandalwood", "Myrrh", "Ylang Ylang", "Chamomile"]
+    }
+    return oils[signName] || ["Lavender", "Frankincense", "Rose"]
+  }
+
+  const getBlendedGuidance = (phaseName, signName, element, modality) => {
+    // Blended guidance system that combines phase archetype with sign essence
+    
+    const phaseActions = {
+      "New Moon": "plant seeds",
+      "Waxing Crescent": "take first steps",
+      "First Quarter": "make decisions",
+      "Waxing Gibbous": "refine",
+      "Full Moon": "harvest",
+      "Waning Gibbous": "share wisdom",
+      "Last Quarter": "release",
+      "Waning Crescent": "rest"
+    }
+
+    const signEssence = {
+      "Aries": { verb: "initiate", quality: "courage", theme: "bold beginnings" },
+      "Taurus": { verb: "ground", quality: "sensual presence", theme: "steadfast devotion" },
+      "Gemini": { verb: "communicate", quality: "curiosity", theme: "bridges and connections" },
+      "Cancer": { verb: "nurture", quality: "emotional depth", theme: "home and heart" },
+      "Leo": { verb: "create", quality: "radiant confidence", theme: "authentic self-expression" },
+      "Virgo": { verb: "purify", quality: "discernment", theme: "devoted refinement" },
+      "Libra": { verb: "balance", quality: "harmony", theme: "relationship and beauty" },
+      "Scorpio": { verb: "transform", quality: "alchemical depth", theme: "shadow integration" },
+      "Sagittarius": { verb: "expand", quality: "adventurous faith", theme: "wider horizons" },
+      "Capricorn": { verb: "build", quality: "patient mastery", theme: "earned authority" },
+      "Aquarius": { verb: "liberate", quality: "visionary insight", theme: "collective consciousness" },
+      "Pisces": { verb: "dissolve", quality: "mystical compassion", theme: "boundless unity" }
+    }
+
+    const sign = signEssence[signName] || signEssence["Aries"]
+    const action = phaseActions[phaseName] || "align"
+
+    // Generate blended guidance
+    const guidance = {
+      "New Moon": `In this sacred darkness, ${action} of ${sign.theme}. Set intentions that ${sign.verb} your ${sign.quality}. What calls to awaken? Trust the void's creative power.`,
+      "Waxing Crescent": `Plant the first seeds of ${sign.theme}. Let small acts of ${sign.quality} build momentum. ${sign.verb.charAt(0).toUpperCase() + sign.verb.slice(1)} with tender courage—trust the emerging light.`,
+      "First Quarter": `Decision time—choose the path of ${sign.theme}. This tension requires you to ${sign.verb} with ${sign.quality}. Push through resistance. Your commitment builds worlds.`,
+      "Waxing Gibbous": `Refine what you're ${sign.verb}ing with ${sign.quality}. Almost there—adjust with devotion to ${sign.theme}. Trust the final stretch before fullness.`,
+      "Full Moon": `All is revealed through ${sign.theme}. See clearly what ${sign.quality} has built. Celebrate your capacity to ${sign.verb}. Release what no longer serves this path.`,
+      "Waning Gibbous": `Share the wisdom of ${sign.theme}. Teach others how to ${sign.verb} with ${sign.quality}. Your insight serves the whole. Give thanks for what you've learned.`,
+      "Last Quarter": `Release what no longer serves your ${sign.theme}. Let go with ${sign.quality}. Forgive what wasn't meant to ${sign.verb}. Make space for the next cycle.`,
+      "Waning Crescent": `Rest in the depths of ${sign.theme}. Let ${sign.quality} compost into wisdom. Surrender to the liminal—${sign.verb} through dreaming. Trust the sacred emptiness.`
+    }
+
+    return guidance[phaseName] || `Align with ${sign.theme} through ${sign.quality}.`
   }
 
   const getElementalAlchemy = (phaseQuality, signElement, signName, phaseName, modality, ruler) => {
@@ -115,17 +184,37 @@ function App() {
       return signDescriptions[signName] || "brings unique energy"
     }
     
-    const alchemyDescription = `${signName} (ruled by ${ruler}) ${getSignDescription()}, while the ${phaseName} calls for ${phaseQuality.toLowerCase()}.`
+    const alchemyDescription = `${signName} ${getSignDescription()}, while the ${phaseName} calls for ${phaseQuality.toLowerCase()}.`
+    
+    // Refined element descriptions based on modality
+    const getElementDescription = () => {
+      if (signElement === 'Fire') {
+        if (modality === 'Cardinal') return 'will, raw initiatory heat, and the spark that begins all things'
+        if (modality === 'Fixed') return 'passion, sustained creative flame, and radiant self-expression'
+        if (modality === 'Mutable') return 'passion, adaptable will, and the kind of heat that transforms through vision and direction'
+      }
+      if (signElement === 'Water') {
+        if (modality === 'Cardinal') return 'emotion, nurturing depth, and the protective tide of feeling'
+        if (modality === 'Fixed') return 'emotion, transformative depth, and the alchemical power of the underworld'
+        if (modality === 'Mutable') return 'emotion, mystical depth, and the boundless compassion that dissolves all separation'
+      }
+      if (signElement === 'Earth') {
+        if (modality === 'Cardinal') return 'form, practical manifestation, and the structure that endures'
+        if (modality === 'Fixed') return 'form, sensual embodiment, and the stability of rooted presence'
+        if (modality === 'Mutable') return 'form, purifying discernment, and the devoted refinement of matter'
+      }
+      if (signElement === 'Air') {
+        if (modality === 'Cardinal') return 'thought, initiating connection, and the balance of relationship'
+        if (modality === 'Fixed') return 'thought, visionary insight, and the liberation of collective consciousness'
+        if (modality === 'Mutable') return 'thought, curious communication, and the swift bridges between minds'
+      }
+      return 'elemental essence'
+    }
     
     // Clear meaning bullets
     const getMeaning = () => {
       return [
-        `The Moon in ${signName} expresses through ${signElement.toLowerCase()}'s essence—${
-          signElement === 'Fire' ? 'will, passion, transformative heat' : 
-          signElement === 'Water' ? 'emotion, depth, intuitive flow' : 
-          signElement === 'Earth' ? 'form, stability, tangible manifestation' : 
-          'thought, communication, swift connection'
-        }`,
+        `The Moon in ${signName} expresses through ${signElement.toLowerCase()}'s essence—${getElementDescription()}`,
         `${phaseName} phase energy: ${phaseQuality}`,
         `${modality} modality ${modality === 'Cardinal' ? 'initiates action and begins new cycles' : modality === 'Fixed' ? 'sustains focus and concentrates power' : 'adapts flow and enables transition'}`,
         `Planetary ruler ${ruler} governs this lunar expression`
@@ -232,23 +321,22 @@ function App() {
     return phases[0] // Default to New Moon
   }
 
-  const getMoonImagePath = (phaseName) => {
-    const imageMap = {
-      "New Moon": "/moon-phases-real/new-moon.jpg",
-      "Waxing Crescent": "/moon-phases-real/waxing-crescent.jpg",
-      "First Quarter": "/moon-phases-real/first-quarter.jpg",
-      "Waxing Gibbous": "/moon-phases-real/waxing-gibbous.jpg",
-      "Full Moon": "/moon-phases-real/full-moon.jpg",
-      "Waning Gibbous": "/moon-phases-real/waning-gibbous.jpg",
-      "Last Quarter": "/moon-phases-real/last-quarter.jpg",
-      "Waning Crescent": "/moon-phases-real/waning-crescent.jpg"
-    }
-    return imageMap[phaseName] || "/moon-phases-real/full-moon.jpg"
+  const getMoonImagePath = (illumination) => {
+    // Map illumination percentage (0-1) to 24 moon phase images
+    const imageNumber = Math.ceil(illumination * 24) || 1
+    const clampedNumber = Math.max(1, Math.min(24, imageNumber))
+    return `/moon-phases-real/${clampedNumber}.jpg`
+  }
+
+  const getFullMoonHarvestNote = (signName) => {
+    return `✨ This Full Moon illuminates what was planted at the New Moon in ${signName} (6 months prior). What seeds of ${signName.toLowerCase()}'s essence are now bearing fruit?`
   }
 
   if (!moonData) {
     return <div className="loading">Calculating lunar position...</div>
   }
+
+  const isFullMoon = moonData.phaseInfo.name === "Full Moon"
 
   return (
     <div className="moon-tracker">
@@ -260,7 +348,7 @@ function App() {
       <main>
         <div className="moon-display">
           <img 
-            src={getMoonImagePath(moonData.phaseInfo.name)}
+            src={getMoonImagePath(moonData.illumination)}
             alt={moonData.phaseInfo.name}
             className="moon-image"
           />
@@ -277,6 +365,9 @@ function App() {
         <div className="archetype-section">
           <h3>{moonData.phaseInfo.archetype}</h3>
           <p className="wisdom">{moonData.phaseInfo.wisdom}</p>
+          {isFullMoon && (
+            <p className="full-moon-harvest">{getFullMoonHarvestNote(moonData.zodiacSign.name)}</p>
+          )}
           <div className="element-badges">
             <span className="element-badge phase-quality">
               Phase: {moonData.phaseInfo.quality}
@@ -339,26 +430,19 @@ function App() {
 
           <div className="correspondence-card">
             <h4>Sign Oils ({moonData.zodiacSign.name})</h4>
-            <p>
-              {moonData.zodiacSign.name === 'Aries' && 'Ginger, Black Pepper, Peppermint'}
-              {moonData.zodiacSign.name === 'Taurus' && 'Rose, Patchouli, Ylang Ylang'}
-              {moonData.zodiacSign.name === 'Gemini' && 'Lemon, Lavender, Basil'}
-              {moonData.zodiacSign.name === 'Cancer' && 'Rose, Sandalwood, Jasmine'}
-              {moonData.zodiacSign.name === 'Leo' && 'Bergamot, Frankincense, Cinnamon'}
-              {moonData.zodiacSign.name === 'Virgo' && 'Rosemary, Lavender, Eucalyptus'}
-              {moonData.zodiacSign.name === 'Libra' && 'Geranium, Ylang Ylang, Jasmine'}
-              {moonData.zodiacSign.name === 'Scorpio' && 'Patchouli, Cedarwood, Black Pepper'}
-              {moonData.zodiacSign.name === 'Sagittarius' && 'Clove, Cinnamon, Coriander'}
-              {moonData.zodiacSign.name === 'Capricorn' && 'Cedarwood, Patchouli, Vetiver'}
-              {moonData.zodiacSign.name === 'Aquarius' && 'Frankincense, Peppermint, Eucalyptus'}
-              {moonData.zodiacSign.name === 'Pisces' && 'Jasmine, Sandalwood, Myrrh'}
-            </p>
+            <p>{getSignOils(moonData.zodiacSign.name).join(", ")}</p>
             <p className="oil-purpose">For {moonData.zodiacSign.element} sign expression</p>
           </div>
           
           <div className="correspondence-card">
-            <h4>Crystals</h4>
+            <h4>Phase Crystals</h4>
             <p>{moonData.phaseInfo.crystals.join(", ")}</p>
+          </div>
+
+          <div className="correspondence-card">
+            <h4>Sign Crystals ({moonData.zodiacSign.name})</h4>
+            <p>{getSignCrystals(moonData.zodiacSign.name).join(", ")}</p>
+            <p className="oil-purpose">Ruled by {moonData.zodiacSign.ruler}</p>
           </div>
           
           <div className="correspondence-card">
@@ -368,7 +452,22 @@ function App() {
 
           <div className="correspondence-card practical-advice">
             <h4>Practical Guidance</h4>
-            <p>{getPracticalAdvice(moonData.phaseInfo.name)}</p>
+            <p>{getBlendedGuidance(
+              moonData.phaseInfo.name,
+              moonData.zodiacSign.name,
+              moonData.zodiacSign.element,
+              moonData.zodiacSign.modality
+            )}</p>
+          </div>
+        </div>
+
+        <div className="navigation-section">
+          <h4>📖 Deepen Your Practice</h4>
+          <div className="nav-links">
+            <a href="https://moonlightsage.co" className="nav-link">🏠 Home</a>
+            <a href="https://moonlightsage.co/readings" className="nav-link">✨ Book a Reading</a>
+            <a href="https://moonlightsage.co/blog" className="nav-link">📚 Zodiac Deep-Dives</a>
+            <a href="https://moonlightsage.co/newsletter" className="nav-link">🌙 Join Lunar Circle</a>
           </div>
         </div>
 
