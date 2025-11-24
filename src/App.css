@@ -98,6 +98,9 @@ main {
   height: 180px;
   object-fit: contain;
   margin-bottom: 1.5rem;
+  padding: 2rem;
+  background: #111011;
+  border-radius: 12px;
 }
 
 .moon-display h2 {
