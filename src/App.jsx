@@ -170,10 +170,10 @@ function App() {
       const signDescriptions = {
         "Aries": "initiates with courage and raw creative fire",
         "Taurus": "grounds through sensual presence and steadfast devotion",
-        "Gemini": "connects through curious inquiry and sacred communication",
+        "Gemini": "connects through curious inquiry and communication",
         "Cancer": "nurtures through emotional depth and ancestral memory",
-        "Leo": "radiates through authentic self-expression and generous heart",
-        "Virgo": "purifies through discerning service and devoted refinement",
+        "Leo": "radiates through authentic self-expression and a generous heart",
+        "Virgo": "purifies through discerning service, devotion, and refinement",
         "Libra": "balances through relationship and aesthetic harmony",
         "Scorpio": "transforms through alchemical depth and shadow integration",
         "Sagittarius": "expands through philosophical quest and adventurous faith",
@@ -329,7 +329,7 @@ function App() {
   }
 
   const getFullMoonHarvestNote = (signName) => {
-    return `✨ This Full Moon illuminates what was planted at the New Moon in ${signName} (6 months prior). What seeds of ${signName.toLowerCase()}'s essence are now bearing fruit?`
+    return `The Full Moon illuminates what was planted at the New Moon in ${signName} (6 months prior). What seeds of ${signName.toLowerCase()}'s essence are now bearing fruit?`
   }
 
   if (!moonData) {
@@ -393,21 +393,7 @@ function App() {
               moonData.zodiacSign.ruler
             ).alchemy}
           </p>
-          <div className="alchemy-meaning">
-            <p className="alchemy-intro">This combination weaves:</p>
-            <ul className="alchemy-bullets">
-              {getElementalAlchemy(
-                moonData.phaseInfo.quality,
-                moonData.zodiacSign.element,
-                moonData.zodiacSign.name,
-                moonData.phaseInfo.name,
-                moonData.zodiacSign.modality,
-                moonData.zodiacSign.ruler
-              ).meaning.map((point, index) => (
-                <li key={index}>{point}</li>
-              ))}
-            </ul>
-          </div>
+
           <div className="alchemy-layers">
             <div className="alchemy-layer">
               <strong>Phase ({moonData.phaseInfo.name}):</strong> {moonData.phaseInfo.quality}
@@ -462,12 +448,12 @@ function App() {
         </div>
 
         <div className="navigation-section">
-          <h4>📖 Deepen Your Practice</h4>
+          <h4>Deepen Your Practice</h4>
           <div className="nav-links">
-            <a href="https://moonlightsage.co" className="nav-link">🏠 Home</a>
-            <a href="https://moonlightsage.co/readings" className="nav-link">✨ Book a Reading</a>
-            <a href="https://moonlightsage.co/blog" className="nav-link">📚 Zodiac Deep-Dives</a>
-            <a href="https://moonlightsage.co/newsletter" className="nav-link">🌙 Join Lunar Circle</a>
+           <a href="https://moonlightsage.co" className="nav-link" target="_blank" rel="noopener noreferrer">Home</a>
+<a href="https://moonlightsage.co/readings" className="nav-link" target="_blank" rel="noopener noreferrer">Book a Reading</a>
+<a href="https://moonlightsage.co/blog" className="nav-link" target="_blank" rel="noopener noreferrer">Zodiac Deep-Dives</a>
+<a href="https://www.moonlightsage.co/subscribe" className="nav-link" target="_blank" rel="noopener noreferrer">Join Lunar Circle</a>
           </div>
         </div>
 

@@ -98,6 +98,7 @@ main {
   object-fit: contain;
   margin-bottom: 1.5rem;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  mix-blend-mode: screen;
 }
 
 .moon-display h2 {
@@ -466,7 +467,7 @@ footer {
 
 /* Navigation Section */
 .navigation-section {
-  background: var(--card-bg);
+  background: var(--bg-secondary);
   border-radius: 12px;
   padding: 2rem;
   margin: 2rem 0;
