@@ -356,9 +356,9 @@ function App() {
           <p className="illumination">{(moonData.illumination * 100).toFixed(1)}% Illuminated</p>
           <p className="zodiac">Moon in {moonData.zodiacSign.name} {moonData.zodiacSign.symbol} • Ruled by {moonData.zodiacSign.ruler}</p>
           <div className="days-until">
-            <span>New Moon in {moonData.daysUntil.toNewMoon} days</span>
+            <span>🌑 New Moon in {moonData.daysUntil.toNewMoon} days</span>
             <span className="separator">•</span>
-            <span>Full Moon in {moonData.daysUntil.toFullMoon} days</span>
+            <span>🌕 Full Moon in {moonData.daysUntil.toFullMoon} days</span>
           </div>
         </div>
 
