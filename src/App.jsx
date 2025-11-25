@@ -331,7 +331,37 @@ function App() {
   const getFullMoonHarvestNote = (signName) => {
     return `The Full Moon illuminates what was planted at the New Moon in ${signName} (6 months prior). What seeds of ${signName.toLowerCase()}'s essence are now bearing fruit?`
   }
+const getPhaseOilPurpose = (phaseName) => {
+  const purposes = {
+    "New Moon": "For sacred beginnings, intention setting, and entering the void",
+    "Waxing Crescent": "For courage, momentum, and taking first steps",
+    "First Quarter": "For clarity, decision-making, and overcoming obstacles",
+    "Waxing Gibbous": "For patience, refinement, and adjustments",
+    "Full Moon": "For celebration, illumination, and release",
+    "Waning Gibbous": "For wisdom, gratitude, and integration",
+    "Last Quarter": "For letting go, forgiveness, and closure",
+    "Waning Crescent": "For rest, reflection, and composting wisdom"
+  }
+  return purposes[phaseName] || "For lunar alignment"
+}
 
+const getSignOilPurpose = (signName) => {
+  const purposes = {
+    "Aries": "For courage, initiation, and bold action",
+    "Taurus": "For grounding, sensuality, and stability",
+    "Gemini": "For clarity, communication, and curiosity",
+    "Cancer": "For emotional healing, nurturing, and intuition",
+    "Leo": "For confidence, creativity, and radiant self-expression",
+    "Virgo": "For purification, discernment, devotion, and service",
+    "Libra": "For balance, harmony, and relationship",
+    "Scorpio": "For transformation, depth, and shadow work",
+    "Sagittarius": "For expansion, optimism, and adventure",
+    "Capricorn": "For endurance, grounding, and mastery",
+    "Aquarius": "For innovation, clarity, and liberation",
+    "Pisces": "For spiritual surrender, compassion, and mysticism"
+  }
+  return purposes[signName] || "For zodiacal alignment"
+}
   if (!moonData) {
     return <div className="loading">Calculating lunar position...</div>
   }
@@ -410,13 +440,13 @@ function App() {
         <div className="correspondence-card">
   <h4>Phase Oils ({moonData.phaseInfo.name})</h4>
   <p>{moonData.phaseInfo.oils.join(", ")}</p>
-  <p className="oil-purpose">{getPhaseOilKeywords(moonData.phaseInfo.name)}</p>
+  <p className="oil-purpose">{getPhaseOilPurpose(moonData.phaseInfo.name)}</p>
 </div>
 
           <div className="correspondence-card">
   <h4>Sign Oils ({moonData.zodiacSign.name})</h4>
   <p>{getSignOils(moonData.zodiacSign.name).join(", ")}</p>
-  <p className="oil-purpose">{getSignOilKeywords(moonData.zodiacSign.name)}</p>
+<p className="oil-purpose">{getSignOilPurpose(moonData.zodiacSign.name)}</p>
 </div>
           
           <div className="correspondence-card">
