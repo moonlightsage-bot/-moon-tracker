@@ -384,7 +384,7 @@ const getSignOilPurpose = (signName) => {
           />
           <h2>{moonData.phaseInfo.name}</h2>
           <p className="illumination">{(moonData.illumination * 100).toFixed(1)}% Illuminated</p>
-          <p className="zodiac">Moon in {moonData.zodiacSign.name} {moonData.zodiacSign.symbol} • Ruled by {moonData.zodiacSign.ruler}</p>
+          <p className="zodiac">Moon in {moonData.zodiacSign.name} {moonData.zodiacSign.symbol}</p>
           <div className="days-until">
             <span>🌑 New Moon in {moonData.daysUntil.toNewMoon} days</span>
             <span className="separator">•</span>
