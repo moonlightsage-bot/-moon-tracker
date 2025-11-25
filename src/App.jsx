@@ -413,21 +413,31 @@ const getSignOilPurpose = (signName) => {
 
         <div className="elemental-alchemy">
           <h4>Elemental Alchemy</h4>
-          <p className="alchemy-description">
-            {getElementalAlchemy(
-              moonData.phaseInfo.quality,
-              moonData.zodiacSign.element,
-              moonData.zodiacSign.name,
-              moonData.phaseInfo.name,
-              moonData.zodiacSign.modality,
-              moonData.zodiacSign.ruler
-            ).alchemy}
-          </p>
+         <p className="alchemy-description">
+    {getElementalAlchemy(
+      moonData.phaseInfo.quality,
+      moonData.zodiacSign.element,
+      moonData.zodiacSign.name,
+      moonData.phaseInfo.name,
+      moonData.zodiacSign.modality,
+      moonData.zodiacSign.ruler
+    ).alchemy}
+  </p>
 
-          <div className="alchemy-layers">
-            <div className="alchemy-layer">
-              <strong>Phase ({moonData.phaseInfo.name}):</strong> {moonData.phaseInfo.quality}
-            </div>
+  <div className="alchemy-meaning">
+    <ul className="alchemy-bullets">
+      {getElementalAlchemy(
+        moonData.phaseInfo.quality,
+        moonData.zodiacSign.element,
+        moonData.zodiacSign.name,
+        moonData.phaseInfo.name,
+        moonData.zodiacSign.modality,
+        moonData.zodiacSign.ruler
+      ).meaning.map((point, index) => (
+        <li key={index}>{point}</li>
+      ))}
+    </ul>
+  </div>
             <div className="alchemy-layer">
               <strong>Sign ({moonData.zodiacSign.element}):</strong> {moonData.zodiacSign.name} brings {moonData.zodiacSign.element === 'Fire' ? 'passion, will, and transformative heat' : moonData.zodiacSign.element === 'Water' ? 'emotional depth, intuition, and feeling' : moonData.zodiacSign.element === 'Earth' ? 'grounding, stability, and manifestation' : 'mental clarity, communication, and swift movement'}
             </div>
