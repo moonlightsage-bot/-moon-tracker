@@ -308,7 +308,13 @@ main {
   font-size: 0.95rem;
   line-height: 1.6;
 }
-
+.oil-purpose {
+  color: var(--sage);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
 .practical-advice {
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(108, 131, 146, 0.1));
   border-color: rgba(212, 175, 55, 0.3);
