@@ -425,19 +425,10 @@ const getSignOilPurpose = (signName) => {
   </p>
 
   <div className="alchemy-meaning">
-    <ul className="alchemy-bullets">
-      {getElementalAlchemy(
-        moonData.phaseInfo.quality,
-        moonData.zodiacSign.element,
-        moonData.zodiacSign.name,
-        moonData.phaseInfo.name,
-        moonData.zodiacSign.modality,
-        moonData.zodiacSign.ruler
-      ).meaning.map((point, index) => (
-        <li key={index}>{point}</li>
-      ))}
-    </ul>
-  </div>
+  <ul className="alchemy-bullets">
+    <li>Planetary ruler {moonData.zodiacSign.ruler} governs this lunar expression</li>
+  </ul>
+</div>
 
   <div className="alchemy-layers">
     <div className="alchemy-layer">
