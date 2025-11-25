@@ -407,18 +407,17 @@ function App() {
           </div>
         </div>
 
-        <div className="correspondences">
-          <div className="correspondence-card">
-            <h4>Phase Oils ({moonData.phaseInfo.name})</h4>
-            <p>{moonData.phaseInfo.oils.join(", ")}</p>
-            <p className="oil-purpose">For {moonData.phaseInfo.quality.toLowerCase()}</p>
-          </div>
+        <div className="correspondence-card">
+  <h4>Phase Oils ({moonData.phaseInfo.name})</h4>
+  <p>{moonData.phaseInfo.oils.join(", ")}</p>
+  <p className="oil-purpose">{getPhaseOilKeywords(moonData.phaseInfo.name)}</p>
+</div>
 
           <div className="correspondence-card">
-            <h4>Sign Oils ({moonData.zodiacSign.name})</h4>
-            <p>{getSignOils(moonData.zodiacSign.name).join(", ")}</p>
-            <p className="oil-purpose">For {moonData.zodiacSign.element} sign expression</p>
-          </div>
+  <h4>Sign Oils ({moonData.zodiacSign.name})</h4>
+  <p>{getSignOils(moonData.zodiacSign.name).join(", ")}</p>
+  <p className="oil-purpose">{getSignOilKeywords(moonData.zodiacSign.name)}</p>
+</div>
           
           <div className="correspondence-card">
             <h4>Phase Crystals</h4>
