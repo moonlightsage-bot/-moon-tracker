@@ -410,10 +410,10 @@ const getSignOilPurpose = (signName) => {
             </span>
           </div>
         </div>
-
-        <div className="elemental-alchemy">
-          <h4>Elemental Alchemy</h4>
-         <p className="alchemy-description">
+<div className="elemental-alchemy">
+  <h4>Elemental Alchemy</h4>
+  
+  <p className="alchemy-description">
     {getElementalAlchemy(
       moonData.phaseInfo.quality,
       moonData.zodiacSign.element,
@@ -438,15 +438,19 @@ const getSignOilPurpose = (signName) => {
       ))}
     </ul>
   </div>
-            <div className="alchemy-layer">
-              <strong>Sign ({moonData.zodiacSign.element}):</strong> {moonData.zodiacSign.name} brings {moonData.zodiacSign.element === 'Fire' ? 'passion, will, and transformative heat' : moonData.zodiacSign.element === 'Water' ? 'emotional depth, intuition, and feeling' : moonData.zodiacSign.element === 'Earth' ? 'grounding, stability, and manifestation' : 'mental clarity, communication, and swift movement'}
-            </div>
-            <div className="alchemy-layer">
-              <strong>Modality ({moonData.zodiacSign.modality}):</strong> {moonData.zodiacSign.modality} energy {moonData.zodiacSign.modality === 'Cardinal' ? 'initiates new beginnings and sets things in motion' : moonData.zodiacSign.modality === 'Fixed' ? 'sustains, concentrates, and builds through persistence' : 'adapts, transitions, and transforms flexibly'}
-            </div>
-          </div>
-        </div>
 
+  <div className="alchemy-layers">
+    <div className="alchemy-layer">
+      <strong>Phase ({moonData.phaseInfo.name}):</strong> {moonData.phaseInfo.quality}
+    </div>
+    <div className="alchemy-layer">
+      <strong>Sign ({moonData.zodiacSign.element}):</strong> {moonData.zodiacSign.name} brings {moonData.zodiacSign.element === 'Fire' ? 'passion, will, and transformative heat' : moonData.zodiacSign.element === 'Water' ? 'emotional depth, intuition, and feeling' : moonData.zodiacSign.element === 'Earth' ? 'grounding, stability, and manifestation' : 'mental clarity, communication, and swift movement'}
+    </div>
+    <div className="alchemy-layer">
+      <strong>Modality ({moonData.zodiacSign.modality}):</strong> {moonData.zodiacSign.modality} energy {moonData.zodiacSign.modality === 'Cardinal' ? 'initiates new beginnings and sets things in motion' : moonData.zodiacSign.modality === 'Fixed' ? 'sustains, concentrates, and builds through persistence' : 'adapts, transitions, and transforms flexibly'}
+    </div>
+  </div>
+</div>
         <div className="correspondences">
           <div className="correspondence-card">
             <h4>Phase Oils ({moonData.phaseInfo.name})</h4>
