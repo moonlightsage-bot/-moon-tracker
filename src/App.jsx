@@ -437,8 +437,9 @@ const getSignOilPurpose = (signName) => {
           </div>
         </div>
 
-        <div className="correspondence-card">
-  <h4>Phase Oils ({moonData.phaseInfo.name})</h4>
+        <div className="correspondences">
+          <div className="correspondence-card">
+            <h4>Phase Oils ({moonData.phaseInfo.name})</h4>
   <p>{moonData.phaseInfo.oils.join(", ")}</p>
   <p className="oil-purpose">{getPhaseOilPurpose(moonData.phaseInfo.name)}</p>
 </div>
