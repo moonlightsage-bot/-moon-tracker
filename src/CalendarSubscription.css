@@ -7,9 +7,9 @@
 }
 
 .subscribe-button {
-  background: linear-gradient(135deg, #8b9d83 0%, #6b7d63 100%); /* Sage gradient */
-  color: #f8f5f0; /* Cream */
-  border: none;
+  background: rgba(221, 196, 153, 0.15);
+  color: var(--gold);
+  border: 1px solid var(--gold);
   padding: 1rem 2rem;
   font-size: 1.1rem;
   font-weight: 600;
@@ -21,9 +21,9 @@
 }
 
 .subscribe-button:hover {
+  background: rgba(221, 196, 153, 0.3);
+  border-color: var(--gold);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(139, 157, 131, 0.4);
-  background: linear-gradient(135deg, #9bae93 0%, #7b8d73 100%);
 }
 
 .subscribe-button:active {

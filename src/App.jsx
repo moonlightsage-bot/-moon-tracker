@@ -533,7 +533,6 @@ const getSignOilPurpose = (signName) => {
            <a href="https://moonlightsage.co" className="nav-link" target="_blank" rel="noopener noreferrer">Home</a>
 <a href="https://moonlightsage.co/readings" className="nav-link" target="_blank" rel="noopener noreferrer">Book a Reading</a>
 <a href="https://moonlightsage.co/blog" className="nav-link" target="_blank" rel="noopener noreferrer">Zodiac Deep-Dives</a>
-<a href="https://www.moonlightsage.co/subscribe" className="nav-link" target="_blank" rel="noopener noreferrer">Join Lunar Circle</a>
           </div>
         </div>
 
