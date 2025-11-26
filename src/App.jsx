@@ -257,87 +257,87 @@ function App() {
 
   const getMoonPhaseInfo = (phase) => {
     // Phase is 0-1, where 0 and 1 are New Moon, 0.5 is Full Moon
-    const phases = [
-      {
-        name: "New Moon",
-        range: [0, 0.0625],
-        archetype: "The Void • Pure Potential",
-        wisdom: "In darkness, all possibilities exist. This is the sacred pause before creation—the breath between worlds. Rest in the mystery.",
-        quality: "Initiation, planting intentions, pure potential",
-        oils: ["Jasmine", "Sandalwood", "Frankincense"],
-        crystals: ["Black Moonstone", "Obsidian", "Labradorite"],
-        gardening: "Plant seeds. Set intentions. The dark moon is for planting root vegetables and new beginnings."
-      },
-      {
-        name: "Waxing Crescent",
-        range: [0.0625, 0.1875],
-        archetype: "The Seedling • First Light",
-        wisdom: "What you planted in darkness now stirs. Tender shoots reach toward light. Nurture the new with patience.",
-        quality: "First action, commitment, building momentum",
-        oils: ["Bergamot", "Peppermint", "Lemon"],
-        crystals: ["Moss Agate", "Green Aventurine", "Citrine"],
-        gardening: "Tend young seedlings. Water intentions. Ideal for planting leafy annuals and herbs."
-      },
-      {
-        name: "First Quarter",
-        range: [0.1875, 0.3125],
-        archetype: "The Warrior • Decision",
-        wisdom: "Half-light reveals the path forward. Choose. Act. Build momentum. This is the crisis of action—commit.",
-        quality: "Challenge, decision, overcoming obstacles",
-        oils: ["Rosemary", "Pine", "Black Pepper"],
-        crystals: ["Carnelian", "Red Jasper", "Tiger's Eye"],
-        gardening: "Prune and strengthen. Time for decisive action in the garden. Plant above-ground fruiting crops."
-      },
-      {
-        name: "Waxing Gibbous",
-        range: [0.3125, 0.4375],
-        archetype: "The Refiner • Almost There",
-        wisdom: "Nearly full, yet still becoming. Adjust, refine, perfect. The harvest approaches—prepare with devotion.",
-        quality: "Refinement, patience, final adjustments",
-        oils: ["Lavender", "Geranium", "Rose"],
-        crystals: ["Rose Quartz", "Amazonite", "Moonstone"],
-        gardening: "Fine-tune care. Watch for pests. Last chance to adjust before the Full Moon peak."
-      },
-      {
-        name: "Full Moon",
-        range: [0.4375, 0.5625],
-        archetype: "The Revelation • Complete Illumination",
-        wisdom: "All is revealed. See clearly what was hidden. This is peak manifestation—celebrate, release, acknowledge.",
-        quality: "Culmination, revelation, illumination, completion",
-        oils: ["Jasmine", "Ylang Ylang", "Sandalwood"],
-        crystals: ["Selenite", "Clear Quartz", "Moonstone"],
-        gardening: "Harvest at peak potency. The Full Moon brings maximum vitality. Water deeply—sap rises."
-      },
-      {
-        name: "Waning Gibbous",
-        range: [0.5625, 0.6875],
-        archetype: "The Teacher • Sharing Wisdom",
-        wisdom: "Light diminishes, but wisdom remains. Share what you've learned. Gratitude transforms experience into treasure.",
-        quality: "Dissemination, sharing, gratitude, integration",
-        oils: ["Frankincense", "Myrrh", "Cedarwood"],
-        crystals: ["Lapis Lazuli", "Sodalite", "Blue Lace Agate"],
-        gardening: "Harvest and preserve. Share the abundance. Plant perennials and bulbs."
-      },
-      {
-        name: "Last Quarter",
-        range: [0.6875, 0.8125],
-        archetype: "The Hermit • Release",
-        wisdom: "Half-light now wanes. Let go of what no longer serves. This is the sacred pruning—cut away with love.",
-        quality: "Letting go, forgiveness, closure, release",
-        oils: ["Cypress", "Eucalyptus", "Sage"],
-        crystals: ["Smoky Quartz", "Apache Tear", "Black Tourmaline"],
-        gardening: "Weed and release. Remove what's complete. Ideal for pruning and clearing."
-      },
-      {
-        name: "Waning Crescent",
-        range: [0.8125, 1],
-        archetype: "The Crone • Wisdom Before Silence",
-        wisdom: "The final sliver holds all the mysteries. Rest, dream, integrate. The void approaches—surrender to the cycle.",
-        quality: "Dissolution, surrender, composting, liminality",
-        oils: ["Lavender", "Vetiver", "Chamomile"],
-        crystals: ["Amethyst", "Lepidolite", "Howlite"],
-        gardening: "Rest the soil. Compost and mulch. Turn under cover crops. Prepare for the next cycle."
-      }
+   const phases = [
+  {
+    name: "New Moon",
+    range: [0, 0.0625],
+    archetype: "The Void • Pure Potential",
+    wisdom: "In darkness, all possibilities exist. This is the sacred pause before creation—the breath between worlds. Rest in the mystery.",
+    quality: "Initiation, planting intentions, pure potential",
+    oils: ["Jasmine", "Sandalwood", "Frankincense"],
+    crystals: ["Black Moonstone", "Obsidian", "Labradorite"],
+    gardening: "Plant seeds. Set intentions. The dark moon is for planting root vegetables and new beginnings."
+  },
+  {
+    name: "Waxing Crescent",
+    range: [0.0625, 0.21875],  // Extended until almost First Quarter
+    archetype: "The Seedling • First Light",
+    wisdom: "What you planted in darkness now stirs. Tender shoots reach toward light. Nurture the new with patience.",
+    quality: "First action, commitment, building momentum",
+    oils: ["Bergamot", "Peppermint", "Lemon"],
+    crystals: ["Moss Agate", "Green Aventurine", "Citrine"],
+    gardening: "Tend young seedlings. Water intentions. Ideal for planting leafy annuals and herbs."
+  },
+  {
+    name: "First Quarter",
+    range: [0.21875, 0.28125],  // Narrow range around 0.25 (true quarter)
+    archetype: "The Warrior • Decision",
+    wisdom: "Half-light reveals the path forward. Choose. Act. Build momentum. This is the crisis of action—commit.",
+    quality: "Challenge, decision, overcoming obstacles",
+    oils: ["Rosemary", "Pine", "Black Pepper"],
+    crystals: ["Carnelian", "Red Jasper", "Tiger's Eye"],
+    gardening: "Prune and strengthen. Time for decisive action in the garden. Plant above-ground fruiting crops."
+  },
+  {
+    name: "Waxing Gibbous",
+    range: [0.28125, 0.4375],
+    archetype: "The Refiner • Almost There",
+    wisdom: "Nearly full, yet still becoming. Adjust, refine, perfect. The harvest approaches—prepare with devotion.",
+    quality: "Refinement, patience, final adjustments",
+    oils: ["Lavender", "Geranium", "Rose"],
+    crystals: ["Rose Quartz", "Amazonite", "Moonstone"],
+    gardening: "Fine-tune care. Watch for pests. Last chance to adjust before the Full Moon peak."
+  },
+  {
+    name: "Full Moon",
+    range: [0.4375, 0.5625],
+    archetype: "The Revelation • Complete Illumination",
+    wisdom: "All is revealed. See clearly what was hidden. This is peak manifestation—celebrate, release, acknowledge.",
+    quality: "Culmination, revelation, illumination, completion",
+    oils: ["Jasmine", "Ylang Ylang", "Sandalwood"],
+    crystals: ["Selenite", "Clear Quartz", "Moonstone"],
+    gardening: "Harvest at peak potency. The Full Moon brings maximum vitality. Water deeply—sap rises."
+  },
+  {
+    name: "Waning Gibbous",
+    range: [0.5625, 0.71875],
+    archetype: "The Teacher • Sharing Wisdom",
+    wisdom: "Light diminishes, but wisdom remains. Share what you've learned. Gratitude transforms experience into treasure.",
+    quality: "Dissemination, sharing, gratitude, integration",
+    oils: ["Frankincense", "Myrrh", "Cedarwood"],
+    crystals: ["Lapis Lazuli", "Sodalite", "Blue Lace Agate"],
+    gardening: "Harvest and preserve. Share the abundance. Plant perennials and bulbs."
+  },
+  {
+    name: "Last Quarter",
+    range: [0.71875, 0.78125],  // Narrow range around 0.75 (true quarter)
+    archetype: "The Hermit • Release",
+    wisdom: "Half-light now wanes. Let go of what no longer serves. This is the sacred pruning—cut away with love.",
+    quality: "Letting go, forgiveness, closure, release",
+    oils: ["Cypress", "Eucalyptus", "Sage"],
+    crystals: ["Smoky Quartz", "Apache Tear", "Black Tourmaline"],
+    gardening: "Weed and release. Remove what's complete. Ideal for pruning and clearing."
+  },
+  {
+    name: "Waning Crescent",
+    range: [0.78125, 1],
+    archetype: "The Crone • Wisdom Before Silence",
+    wisdom: "The final sliver holds all the mysteries. Rest, dream, integrate. The void approaches—surrender to the cycle.",
+    quality: "Dissolution, surrender, composting, liminality",
+    oils: ["Lavender", "Vetiver", "Chamomile"],
+    crystals: ["Amethyst", "Lepidolite", "Howlite"],
+    gardening: "Rest the soil. Compost and mulch. Turn under cover crops. Prepare for the next cycle."
+  }
     ]
 
     for (let phaseData of phases) {
