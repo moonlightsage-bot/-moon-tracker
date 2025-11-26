@@ -1,4 +1,4 @@
-import SunCalc from 'suncalc';
+import * as astronomy from 'astronomy-engine';
 
 // Complete zodiac data with correspondences
 const zodiacSigns = [
@@ -121,68 +121,65 @@ function getOppositeSign(signName) {
   return zodiacSigns[0];
 }
 
-function findNextMoonPhase(startDate, targetPhase) {
-  let currentDate = new Date(startDate);
-  let previousIllumination = SunCalc.getMoonIllumination(currentDate);
+// Find all moon phases using astronomy-engine (precise to the minute)
+function findMoonPhases(startDate, months) {
+  const phases = [];
+  const endDate = new Date(startDate);
+  endDate.setMonth(endDate.getMonth() + months);
   
-  for (let i = 0; i < 40; i++) {
-    currentDate.setDate(currentDate.getDate() + 1);
-    const illumination = SunCalc.getMoonIllumination(currentDate);
-    
-    if (targetPhase === 'new') {
-      if (previousIllumination.phase > 0.95 && illumination.phase < 0.05) {
-        return findExactMoonPhase(currentDate, 'new');
-      }
+  let searchDate = new Date(startDate);
+  
+  // Find all New Moons and Full Moons in the range
+  while (searchDate < endDate) {
+    // Search for next New Moon (phase 0°)
+    const newMoonResult = astronomy.SearchMoonPhase(0, searchDate, 40);
+    if (newMoonResult && newMoonResult.date < endDate) {
+      phases.push({
+        type: 'new',
+        date: newMoonResult.date
+      });
     }
     
-    if (targetPhase === 'full') {
-      if (previousIllumination.phase < 0.5 && illumination.phase >= 0.5) {
-        return findExactMoonPhase(currentDate, 'full');
-      }
+    // Search for next Full Moon (phase 180°)
+    const fullMoonResult = astronomy.SearchMoonPhase(180, searchDate, 40);
+    if (fullMoonResult && fullMoonResult.date < endDate) {
+      phases.push({
+        type: 'full',
+        date: fullMoonResult.date
+      });
     }
     
-    previousIllumination = illumination;
+    // Move forward ~25 days to find next set of phases
+    searchDate = new Date(searchDate.getTime() + 25 * 24 * 60 * 60 * 1000);
   }
   
-  return null;
-}
-
-function findExactMoonPhase(approximateDate, targetPhase) {
-  let bestDate = new Date(approximateDate);
-  let bestDifference = 1;
+  // Remove duplicates and sort by date
+  const uniquePhases = [];
+  const seen = new Set();
   
-  const startTime = approximateDate.getTime() - (12 * 60 * 60 * 1000);
-  
-  for (let i = 0; i < 24 * 4; i++) {
-    const testDate = new Date(startTime + (i * 15 * 60 * 1000));
-    const illumination = SunCalc.getMoonIllumination(testDate);
-    
-    let difference;
-    if (targetPhase === 'new') {
-      difference = Math.min(illumination.phase, 1 - illumination.phase);
-    } else {
-      difference = Math.abs(illumination.phase - 0.5);
+  phases.forEach(phase => {
+    const key = `${phase.type}-${phase.date.toISOString().slice(0, 10)}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      uniquePhases.push(phase);
     }
-    
-    if (difference < bestDifference) {
-      bestDifference = difference;
-      bestDate = new Date(testDate);
-    }
-  }
+  });
   
-  return bestDate;
+  return uniquePhases.sort((a, b) => a.date - b.date);
 }
 
 function generateLunarEvents(months = 12) {
   const events = [];
-  let currentDate = new Date();
+  const now = new Date();
   const endDate = new Date();
   endDate.setMonth(endDate.getMonth() + months);
   
-  while (currentDate < endDate) {
-    const newMoon = findNextMoonPhase(currentDate, 'new');
-    if (newMoon && newMoon < endDate) {
-      const sunSign = getSunSign(newMoon);
+  // Get precise moon phases using astronomy-engine
+  const moonPhases = findMoonPhases(now, months);
+  
+  moonPhases.forEach(phase => {
+    if (phase.type === 'new') {
+      const sunSign = getSunSign(phase.date);
       
       // Rich description with correspondences
       const newMoonDescription = [
@@ -204,17 +201,15 @@ function generateLunarEvents(months = 12) {
       
       events.push({
         type: 'new',
-        date: newMoon,
+        date: phase.date,
         sign: sunSign.name,
         summary: `🌑 New Moon in ${sunSign.name} ${sunSign.symbol}`,
         description: newMoonDescription
       });
-      currentDate = new Date(newMoon.getTime() + 1 * 24 * 60 * 60 * 1000);
     }
     
-    const fullMoon = findNextMoonPhase(currentDate, 'full');
-    if (fullMoon && fullMoon < endDate) {
-      const sunSign = getSunSign(fullMoon);
+    if (phase.type === 'full') {
+      const sunSign = getSunSign(phase.date);
       const moonSign = getOppositeSign(sunSign.name);
       
       // Rich description with correspondences
@@ -237,16 +232,13 @@ function generateLunarEvents(months = 12) {
       
       events.push({
         type: 'full',
-        date: fullMoon,
+        date: phase.date,
         sign: moonSign.name,
         summary: `🌕 Full Moon in ${moonSign.name} ${moonSign.symbol}`,
         description: fullMoonDescription
       });
-      currentDate = new Date(fullMoon.getTime() + 1 * 24 * 60 * 60 * 1000);
-    } else {
-      break;
     }
-  }
+  });
   
   // Seasonal Gateways with rich descriptions
   const gateways = [
