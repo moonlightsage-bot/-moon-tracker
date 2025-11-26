@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import SunCalc from 'suncalc'
+import * as astronomy from 'astronomy-engine'
 import CalendarSubscription from './CalendarSubscription'
 import './App.css'
 
@@ -41,23 +42,50 @@ function App() {
   }, [])
 
   const getApproxMoonSign = (date) => {
-    // Simplified zodiac calculation based on Sun's position as proxy
-    // Note: Actual moon sign would need ephemeris data
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    
-    if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return { name: "Aries", symbol: "♈︎", ruler: "Mars ♂", element: "Fire", modality: "Cardinal" }
-    if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return { name: "Taurus", symbol: "♉︎", ruler: "Venus ♀", element: "Earth", modality: "Fixed" }
-    if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return { name: "Gemini", symbol: "♊︎", ruler: "Mercury ☿", element: "Air", modality: "Mutable" }
-    if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return { name: "Cancer", symbol: "♋︎", ruler: "Moon ☽", element: "Water", modality: "Cardinal" }
-    if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return { name: "Leo", symbol: "♌︎", ruler: "Sun ☉", element: "Fire", modality: "Fixed" }
-    if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return { name: "Virgo", symbol: "♍︎", ruler: "Mercury ☿", element: "Earth", modality: "Mutable" }
-    if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return { name: "Libra", symbol: "♎︎", ruler: "Venus ♀", element: "Air", modality: "Cardinal" }
-    if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return { name: "Scorpio", symbol: "♏︎", ruler: "Mars ♂", element: "Water", modality: "Fixed" }
-    if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return { name: "Sagittarius", symbol: "♐︎", ruler: "Jupiter ♃", element: "Fire", modality: "Mutable" }
-    if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return { name: "Capricorn", symbol: "♑︎", ruler: "Saturn ♄", element: "Earth", modality: "Cardinal" }
-    if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return { name: "Aquarius", symbol: "♒︎", ruler: "Saturn ♄", element: "Air", modality: "Fixed" }
-    return { name: "Pisces", symbol: "♓︎", ruler: "Jupiter ♃", element: "Water", modality: "Mutable" }
+    try {
+      // Create an observer (we use a generic Earth observer)
+      const observer = new astronomy.Observer(0, 0, 0) // lat, lon, elevation
+      
+      // Get moon's geocentric position
+      const moonEquator = astronomy.Equator('Moon', date, observer, true, true)
+      
+      // Convert to ecliptic coordinates
+      const ecliptic = astronomy.Ecliptic(moonEquator.vec)
+      let longitude = ecliptic.elon
+      
+      // Normalize longitude to 0-360
+      if (longitude < 0) longitude += 360
+      
+      console.log("Moon ecliptic longitude:", longitude) // Debug
+      
+      // Tropical zodiac signs
+      const signs = [
+        { name: "Aries", symbol: "♈︎", ruler: "Mars ♂", element: "Fire", modality: "Cardinal", start: 0 },
+        { name: "Taurus", symbol: "♉︎", ruler: "Venus ♀", element: "Earth", modality: "Fixed", start: 30 },
+        { name: "Gemini", symbol: "♊︎", ruler: "Mercury ☿", element: "Air", modality: "Mutable", start: 60 },
+        { name: "Cancer", symbol: "♋︎", ruler: "Moon ☽", element: "Water", modality: "Cardinal", start: 90 },
+        { name: "Leo", symbol: "♌︎", ruler: "Sun ☉", element: "Fire", modality: "Fixed", start: 120 },
+        { name: "Virgo", symbol: "♍︎", ruler: "Mercury ☿", element: "Earth", modality: "Mutable", start: 150 },
+        { name: "Libra", symbol: "♎︎", ruler: "Venus ♀", element: "Air", modality: "Cardinal", start: 180 },
+        { name: "Scorpio", symbol: "♏︎", ruler: "Mars ♂", element: "Water", modality: "Fixed", start: 210 },
+        { name: "Sagittarius", symbol: "♐︎", ruler: "Jupiter ♃", element: "Fire", modality: "Mutable", start: 240 },
+        { name: "Capricorn", symbol: "♑︎", ruler: "Saturn ♄", element: "Earth", modality: "Cardinal", start: 270 },
+        { name: "Aquarius", symbol: "♒︎", ruler: "Saturn ♄", element: "Air", modality: "Fixed", start: 300 },
+        { name: "Pisces", symbol: "♓︎", ruler: "Jupiter ♃", element: "Water", modality: "Mutable", start: 330 }
+      ]
+      
+      // Find which sign the moon is in
+      for (let i = signs.length - 1; i >= 0; i--) {
+        if (longitude >= signs[i].start) {
+          return signs[i]
+        }
+      }
+      
+      return signs[0]
+    } catch (error) {
+      console.error("Error calculating moon sign:", error)
+      return { name: "Sagittarius", symbol: "♐︎", ruler: "Jupiter ♃", element: "Fire", modality: "Mutable" }
+    }
   }
 
   const getDaysUntilNextPhase = (currentPhase) => {
@@ -321,10 +349,27 @@ function App() {
     return phases[0] // Default to New Moon
   }
 
-  const getMoonImagePath = (illumination) => {
-    // Map illumination percentage (0-1) to 24 moon phase images
-    const imageNumber = Math.ceil(illumination * 24) || 1
-    const clampedNumber = Math.max(1, Math.min(24, imageNumber))
+    const getMoonImagePath = (illumination) => {
+    // 27 images: 1,27 (black), 2 (thin wax), 8 (1st qtr), 14 (full), 21 (3rd qtr), 26 (thin wan)
+    let imageNumber
+    
+    if (illumination <= 0.015) {
+      // Black New Moon (0-1.5%) → Image 1
+      imageNumber = 1
+    } else if (illumination < 0.50) {
+      // Waxing (1.5-50%) → Images 2-8
+      imageNumber = Math.round(2 + ((illumination - 0.015) / 0.485) * 6)
+    } else if (illumination < 0.985) {
+      // Full + Waning (50-98.5%) → Images 9-26
+      imageNumber = Math.round(9 + ((illumination - 0.50) / 0.485) * 17)
+    } else {
+      // Black New Moon (98.5-100%) → Image 27
+      imageNumber = 27
+    }
+    
+    const clampedNumber = Math.max(1, Math.min(27, imageNumber))
+    console.log("Illumination:", (illumination * 100).toFixed(1) + "%", "→ Image:", clampedNumber)
+    
     return `/moon-phases-real/${clampedNumber}.jpg`
   }
 
@@ -383,7 +428,7 @@ const getSignOilPurpose = (signName) => {
             className="moon-image"
           />
           <h2>{moonData.phaseInfo.name}</h2>
-          <p className="illumination">{(moonData.illumination * 100).toFixed(1)}% Illuminated</p>
+          <p className="illumination">{(moonData.illumination * 100).toFixed(1)}% Luminous</p>
           <p className="zodiac">Moon in {moonData.zodiacSign.name} {moonData.zodiacSign.symbol}</p>
           <div className="days-until">
             <span>🌑 New Moon in {moonData.daysUntil.toNewMoon} days</span>
