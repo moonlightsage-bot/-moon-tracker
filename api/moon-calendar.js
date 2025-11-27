@@ -196,7 +196,9 @@ function generateLunarEvents(months = 12) {
         ``,
         `✦ PRACTICE: Set intentions aligned with ${sunSign.name}'s gifts of ${sunSign.essence}. Plant seeds in the fertile darkness.`,
         ``,
-        `→ Track today's lunar wisdom: https://moonlightsage.co`
+        `→ More Lunar Wisdom: https://moon-tracker-ten.vercel.app`,
+        `→ Book a Reading: https://www.moonlightsage.co/offerings`,
+        `→ Home: https://www.moonlightsage.co`
       ].join('\\n');
       
       events.push({
@@ -225,9 +227,11 @@ function generateLunarEvents(months = 12) {
         `🌿 OILS: ${moonSign.oils.join(', ')}`,
         `💎 CRYSTALS: ${moonSign.crystals.join(', ')}`,
         ``,
-        `✦ PRACTICE: Harvest the fruits of ${moonSign.name}. Release what no longer serves. Celebrate illumination.`,
+        `✦ PRACTICE: Harvest the fruits of ${moonSign.name} (seeded six months ago at the ${moonSign.name} New Moon). Release what no longer serves. Acknowledge what is illuminated.`,
         ``,
-        `→ Track today's lunar wisdom: https://moonlightsage.co`
+        `→ More Lunar Wisdom: https://moon-tracker-ten.vercel.app`,
+        `→ Book a Reading: https://www.moonlightsage.co/offerings`,
+        `→ Home: https://www.moonlightsage.co`
       ].join('\\n');
       
       events.push({
@@ -258,7 +262,9 @@ function generateLunarEvents(months = 12) {
         ``,
         `✦ PRACTICE: Plant seeds of intention. Embrace bold new starts. Honor the returning light.`,
         ``,
-        `→ Seasonal gateway teachings: https://moonlightsage.co`
+        `→ More Lunar Wisdom: https://moon-tracker-ten.vercel.app`,
+        `→ Book a Reading: https://www.moonlightsage.co/offerings`,
+        `→ Home: https://www.moonlightsage.co`
       ].join('\\n')
     },
     { 
@@ -277,7 +283,9 @@ function generateLunarEvents(months = 12) {
         ``,
         `✦ PRACTICE: Celebrate abundance. Honor what flourishes. Give thanks at the peak of light.`,
         ``,
-        `→ Seasonal gateway teachings: https://moonlightsage.co`
+        `→ More Lunar Wisdom: https://moon-tracker-ten.vercel.app`,
+        `→ Book a Reading: https://www.moonlightsage.co/offerings`,
+        `→ Home: https://www.moonlightsage.co`
       ].join('\\n')
     },
     { 
@@ -296,7 +304,9 @@ function generateLunarEvents(months = 12) {
         ``,
         `✦ PRACTICE: Harvest what you've cultivated. Release what's complete. Find equilibrium.`,
         ``,
-        `→ Seasonal gateway teachings: https://moonlightsage.co`
+        `→ More Lunar Wisdom: https://moon-tracker-ten.vercel.app`,
+        `→ Book a Reading: https://www.moonlightsage.co/offerings`,
+        `→ Home: https://www.moonlightsage.co`
       ].join('\\n')
     },
     { 
@@ -315,7 +325,9 @@ function generateLunarEvents(months = 12) {
         ``,
         `✦ PRACTICE: Enter the sacred darkness. Set foundations. Trust the returning light.`,
         ``,
-        `→ Seasonal gateway teachings: https://moonlightsage.co`
+        `→ More Lunar Wisdom: https://moon-tracker-ten.vercel.app`,
+        `→ Book a Reading: https://www.moonlightsage.co/offerings`,
+        `→ Home: https://www.moonlightsage.co`
       ].join('\\n')
     }
   ];
