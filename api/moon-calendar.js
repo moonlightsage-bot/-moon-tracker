@@ -1,4 +1,4 @@
-import * as astronomy from 'astronomy-engine';
+const astronomy = require('astronomy-engine');
 
 // Complete zodiac data with correspondences
 const zodiacSigns = [
@@ -377,7 +377,7 @@ function generateICalContent(events) {
   return ical;
 }
 
-export default function handler(req, res) {
+module.exports = function handler(req, res) {
   try {
     const events = generateLunarEvents(12);
     const ical = generateICalContent(events);
