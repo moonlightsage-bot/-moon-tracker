@@ -145,50 +145,20 @@ function App() {
   }
 
   const getBlendedGuidance = (phaseName, signName, element, modality) => {
-    // Blended guidance system that combines phase archetype with sign essence
+    // Refined practice guidance for each phase
     
-    const phaseActions = {
-      "New Moon": "plant seeds",
-      "Waxing Crescent": "take first steps",
-      "First Quarter": "make decisions",
-      "Waxing Gibbous": "refine",
-      "Full Moon": "harvest",
-      "Waning Gibbous": "share wisdom",
-      "Last Quarter": "release",
-      "Waning Crescent": "rest"
-    }
-
-    const signEssence = {
-      "Aries": { verb: "initiate", quality: "courage", theme: "bold beginnings" },
-      "Taurus": { verb: "ground", quality: "sensual presence", theme: "steadfast devotion" },
-      "Gemini": { verb: "communicate", quality: "curiosity", theme: "bridges and connections" },
-      "Cancer": { verb: "nurture", quality: "emotional depth", theme: "home and heart" },
-      "Leo": { verb: "create", quality: "radiant confidence", theme: "authentic self-expression" },
-      "Virgo": { verb: "purify", quality: "discernment", theme: "devoted refinement" },
-      "Libra": { verb: "balance", quality: "harmony", theme: "relationship and beauty" },
-      "Scorpio": { verb: "transform", quality: "alchemical depth", theme: "shadow integration" },
-      "Sagittarius": { verb: "expand", quality: "adventurous faith", theme: "wider horizons" },
-      "Capricorn": { verb: "build", quality: "patient mastery", theme: "earned authority" },
-      "Aquarius": { verb: "liberate", quality: "visionary insight", theme: "collective consciousness" },
-      "Pisces": { verb: "dissolve", quality: "mystical compassion", theme: "boundless unity" }
-    }
-
-    const sign = signEssence[signName] || signEssence["Aries"]
-    const action = phaseActions[phaseName] || "align"
-
-    // Generate blended guidance
     const guidance = {
-      "New Moon": `In this sacred darkness, ${action} of ${sign.theme}. Set intentions that ${sign.verb} your ${sign.quality}. What calls to awaken? Trust the void's creative power.`,
-      "Waxing Crescent": `Plant the first seeds of ${sign.theme}. Let small acts of ${sign.quality} build momentum. ${sign.verb.charAt(0).toUpperCase() + sign.verb.slice(1)} with tender courage—trust the emerging light.`,
-      "First Quarter": `Decision time—choose the path of ${sign.theme}. This tension requires you to ${sign.verb} with ${sign.quality}. Push through resistance. Your commitment builds worlds.`,
-      "Waxing Gibbous": `Refine what you're ${sign.verb}ing with ${sign.quality}. Almost there—adjust with devotion to ${sign.theme}. Trust the final stretch before fullness.`,
-      "Full Moon": `All is revealed through ${sign.theme}. See clearly what ${sign.quality} has built. Celebrate your capacity to ${sign.verb}. Release what no longer serves this path.`,
-      "Waning Gibbous": `Share the wisdom of ${sign.theme}. Teach others how to ${sign.verb} with ${sign.quality}. Your insight serves the whole. Give thanks for what you've learned.`,
-      "Last Quarter": `Release what no longer serves your ${sign.theme}. Let go with ${sign.quality}. Forgive what wasn't meant to ${sign.verb}. Make space for the next cycle.`,
-      "Waning Crescent": `Rest in the depths of ${sign.theme}. Let ${sign.quality} compost into wisdom. Surrender to the liminal—${sign.verb} through dreaming. Trust the sacred emptiness.`
+      "New Moon": `In this sacred dark, set intentions aligned with ${signName}'s gifts. What wants to awaken through you? Trust the creative power of the void.`,
+      "Waxing Crescent": `A faint light emerges. Take small, devoted steps. Momentum grows through steady action.`,
+      "First Quarter": `A crossroads. Choose your direction and commit. Move through resistance — your effort is shaping the future.`,
+      "Waxing Gibbous": `Refine, adjust, attune. Tend to the details before the cycle reaches fullness.`,
+      "Full Moon": `All is illuminated. Witness what has come into form. Celebrate the harvest, and release what has completed its story.`,
+      "Waning Gibbous": `Share your insight. Offer what you've learned. Give thanks for the wisdom gathered along the path.`,
+      "Last Quarter": `A clearing opens. Let go with intention. Release what is complete and soften into forgiveness.`,
+      "Waning Crescent": `Return to the quiet dark. Rest, empty, and dream. Let the old compost so the new can take root.`
     }
 
-    return guidance[phaseName] || `Align with ${sign.theme} through ${sign.quality}.`
+    return guidance[phaseName] || `Align with the rhythm of ${signName}.`
   }
 
   const getElementalAlchemy = (phaseQuality, signElement, signName, phaseName, modality, ruler) => {
@@ -517,13 +487,19 @@ const getSignOilPurpose = (signName) => {
           </div>
 
           <div className="correspondence-card practical-advice">
-            <h4>Practical Guidance</h4>
+            <h4>Practice</h4>
             <p>{getBlendedGuidance(
               moonData.phaseInfo.name,
               moonData.zodiacSign.name,
               moonData.zodiacSign.element,
               moonData.zodiacSign.modality
             )}</p>
+            {moonData.phaseInfo.name === "New Moon" && (
+              <p className="six-month-note">✦ What is set in motion now culminates at the Full Moon in {moonData.zodiacSign.name} six months hence.</p>
+            )}
+            {moonData.phaseInfo.name === "Full Moon" && (
+              <p className="six-month-note">✦ This harvest reflects what was seeded six months ago at the {moonData.zodiacSign.name} New Moon.</p>
+            )}
           </div>
         </div>
 
