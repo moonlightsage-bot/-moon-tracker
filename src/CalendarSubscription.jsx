@@ -3,28 +3,54 @@ import './CalendarSubscription.css';
 
 function CalendarSubscription() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTimezone, setSelectedTimezone] = useState('UTC');
+  const [selectedTimezone, setSelectedTimezone] = useState('America/Mexico_City');
   const [copied, setCopied] = useState(false);
   
   const timezones = [
-    { value: 'UTC', label: 'UTC (Universal)' },
+    { value: 'America/Mexico_City', label: 'Mexico City' },
     { value: 'America/New_York', label: 'Eastern Time (US)' },
     { value: 'America/Chicago', label: 'Central Time (US)' },
     { value: 'America/Denver', label: 'Mountain Time (US)' },
     { value: 'America/Los_Angeles', label: 'Pacific Time (US)' },
-    { value: 'America/Mexico_City', label: 'Mexico City' },
     { value: 'Europe/London', label: 'London (UK)' },
     { value: 'Europe/Paris', label: 'Paris (EU)' },
     { value: 'Asia/Tokyo', label: 'Tokyo (Japan)' },
-    { value: 'Australia/Sydney', label: 'Sydney (Australia)' }
+    { value: 'Australia/Sydney', label: 'Sydney (Australia)' },
+    { value: 'UTC', label: 'UTC (Universal)' }
   ];
   
-  const getCalendarUrl = () => {
-    const path = `/api/moon-calendar?timezone=${encodeURIComponent(selectedTimezone)}`;
+  const getBaseUrl = () => {
     if (typeof window !== 'undefined') {
-      return `https://${window.location.host}${path}`;
+      return `https://${window.location.host}`;
     }
-    return path;
+    return 'https://moon-tracker-ten.vercel.app';
+  };
+  
+  const getCalendarUrl = () => {
+    return `${getBaseUrl()}/api/moon-calendar?timezone=${encodeURIComponent(selectedTimezone)}`;
+  };
+  
+  const getAppleCalendarUrl = () => {
+    // webcal:// protocol opens directly in Apple Calendar
+    return `webcal://${window.location.host}/api/moon-calendar?timezone=${encodeURIComponent(selectedTimezone)}`;
+  };
+  
+  const getGoogleCalendarUrl = () => {
+    // Google Calendar URL with the feed
+    const calUrl = getCalendarUrl();
+    return `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(calUrl)}`;
+  };
+  
+  const handleAppleClick = () => {
+    window.location.href = getAppleCalendarUrl();
+  };
+  
+  const handleGoogleClick = () => {
+    window.open(getGoogleCalendarUrl(), '_blank');
+  };
+  
+  const handleDownload = () => {
+    window.location.href = getCalendarUrl();
   };
   
   const copyToClipboard = async () => {
@@ -60,8 +86,7 @@ function CalendarSubscription() {
             
             <h2>Subscribe to Lunar Events</h2>
             <p className="modal-description">
-              Receive automatic New Moon and Full Moon events in your calendar. 
-              Events will update automatically each month!
+              Receive New Moon and Full Moon events directly in your calendar.
             </p>
             
             <div className="timezone-selector">
@@ -79,61 +104,54 @@ function CalendarSubscription() {
               </select>
             </div>
             
-            <div className="subscription-url-display">
-              <label>Your Calendar Subscription URL:</label>
-              <input 
-                type="text" 
-                value={getCalendarUrl()} 
-                readOnly 
-                onClick={(e) => e.target.select()}
-                className="url-input"
-              />
-            </div>
-            
-            <div className="button-group">
+            <div className="calendar-buttons">
               <button 
-                className="primary-button"
-                onClick={copyToClipboard}
+                className="calendar-btn apple-btn"
+                onClick={handleAppleClick}
               >
-                {copied ? 'Copied!' : 'Copy Subscription URL'}
+                <span className="btn-icon">📱</span>
+                <span className="btn-text">Add to Apple Calendar</span>
+              </button>
+              
+              <button 
+                className="calendar-btn google-btn"
+                onClick={handleGoogleClick}
+              >
+                <span className="btn-icon">📅</span>
+                <span className="btn-text">Add to Google Calendar</span>
+              </button>
+              
+              <button 
+                className="calendar-btn download-btn"
+                onClick={handleDownload}
+              >
+                <span className="btn-icon">📥</span>
+                <span className="btn-text">Download .ics File</span>
               </button>
             </div>
             
-            <div className="instructions">
-              <h3>How to Subscribe:</h3>
-              
-              <div className="instruction-section">
-                <h4>iPhone/iPad:</h4>
-                <ol>
-                  <li>Copy URL above</li>
-                  <li>Settings → Calendar → Accounts → Add Account → Other</li>
-                  <li>Add Subscribed Calendar</li>
-                  <li>Paste URL → Subscribe</li>
-                </ol>
-              </div>
-              
-              <div className="instruction-section">
-                <h4>Mac:</h4>
-                <ol>
-                  <li>Copy URL above</li>
-                  <li>Calendar → File → New Calendar Subscription</li>
-                  <li>Paste URL → Subscribe</li>
-                </ol>
-              </div>
-              
-              <div className="instruction-section">
-                <h4>Google Calendar:</h4>
-                <ol>
-                  <li>Copy URL above</li>
-                  <li>+ next to "Other calendars" → From URL</li>
-                  <li>Paste URL → Add calendar</li>
-                </ol>
+            <div className="manual-section">
+              <p className="manual-label">Or copy the subscription URL:</p>
+              <div className="url-row">
+                <input 
+                  type="text" 
+                  value={getCalendarUrl()} 
+                  readOnly 
+                  onClick={(e) => e.target.select()}
+                  className="url-input"
+                />
+                <button 
+                  className="copy-btn"
+                  onClick={copyToClipboard}
+                >
+                  {copied ? '✓' : 'Copy'}
+                </button>
               </div>
             </div>
             
             <div className="modal-footer">
               <p className="fine-print">
-                Includes New & Full Moons for 12 months. Auto-updates. Unsubscribe anytime.
+                Includes New & Full Moons + Seasonal Gateways for 12 months.
               </p>
             </div>
           </div>
