@@ -72,7 +72,7 @@ function CalendarSubscription() {
         className="subscribe-button"
         onClick={() => setIsModalOpen(true)}
       >
-        Subscribe to Moon Calendar
+        Subscribe to Lunar calendar
       </button>
       
       {isModalOpen && (

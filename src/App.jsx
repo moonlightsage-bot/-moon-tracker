@@ -559,9 +559,9 @@ const getSignOilPurpose = (signName) => {
           })}
         </div>
       </main>
-
+<p className="calendar-promo">Receive New Moon & Full Moon, Solstice & Equinox events directly in your calendar.</p>
       <CalendarSubscription />
-
+     
       <footer>
         <p>Phenomenological geocentric perspective • Classical tropical astrology</p>
         <p className="disclaimer">For educational and contemplative purposes</p>
