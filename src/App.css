@@ -549,6 +549,22 @@ footer {
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
+  body {
+    font-size: 1.1rem;
+  }
+  
+  .wisdom {
+    font-size: 1rem;
+  }
+  
+  .correspondence-card p {
+    font-size: 0.95rem;
+  }
+  
+  .calendar-promo {
+    font-size: 1rem;
+  }
+
   .nav-links {
     grid-template-columns: 1fr;
   }
