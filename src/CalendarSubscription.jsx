@@ -3,7 +3,7 @@ import './CalendarSubscription.css';
 
 function CalendarSubscription() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTimezone, setSelectedTimezone] = useState('America/Mexico_City');
+  const [selectedTimezone, setSelectedTimezone] = useState('UTC');
   const [copied, setCopied] = useState(false);
   
   const timezones = [
@@ -87,7 +87,7 @@ function CalendarSubscription() {
             
             <h2>Subscribe to Lunar Events</h2>
             <p className="modal-description">
-              Receive New Moon and Full Moon events directly in your calendar.
+              Receive New Moon & Full Moon events, Solstices & Equinoxes directly in your calendar.
             </p>
             
             <div className="timezone-selector">
