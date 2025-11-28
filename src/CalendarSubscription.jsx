@@ -36,9 +36,10 @@ function CalendarSubscription() {
   };
   
   const getGoogleCalendarUrl = () => {
-    // Google Calendar URL with the feed
-    const calUrl = getCalendarUrl();
-    return `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(calUrl)}`;
+    // Google Calendar needs webcal:// or direct https URL
+    const baseUrl = window.location.host;
+    const calPath = `/api/moon-calendar?timezone=${encodeURIComponent(selectedTimezone)}`;
+    return `https://calendar.google.com/calendar/u/0/r?cid=webcal://${baseUrl}${calPath}`;
   };
   
   const handleAppleClick = () => {

@@ -540,7 +540,7 @@ const getSignOilPurpose = (signName) => {
         </div>
 
         <div className="navigation-section">
-          <h4>Deepen Your Practice</h4>
+          <h4>Go Deeper</h4>
           <div className="nav-links">
            <a href="https://moonlightsage.co" className="nav-link" target="_blank" rel="noopener noreferrer">Home</a>
 <a href="https://moonlightsage.co/readings" className="nav-link" target="_blank" rel="noopener noreferrer">Book a Reading</a>
