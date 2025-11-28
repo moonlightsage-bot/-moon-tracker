@@ -227,7 +227,7 @@ function generateLunarEvents(months = 12) {
         `🌿 OILS: ${moonSign.oils.join(', ')}`,
         `💎 CRYSTALS: ${moonSign.crystals.join(', ')}`,
         ``,
-        `✦ PRACTICE: Harvest the fruits of ${moonSign.name} (seeded six months ago at the ${moonSign.name} New Moon). Release what no longer serves. Acknowledge what is illuminated.`,
+        `✦ PRACTICE: All is revealed. Revisit the ${moonSign.name} New Moon seeds: Celebrate the harvest, witness what has matured, release what is complete, and receive the insight now illuminated.`,
         ``,
         `→ More Lunar Wisdom: https://moon-tracker-ten.vercel.app`,
         `→ Book a Reading: https://www.moonlightsage.co/offerings`,
