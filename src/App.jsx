@@ -187,7 +187,7 @@ function App() {
       "Waxing Crescent": `A faint light emerges. Take small, devoted steps. Momentum grows through steady action.`,
       "First Quarter": `A crossroads. Choose your direction and commit. Move through resistance — your effort is shaping the future.`,
       "Waxing Gibbous": `Refine, adjust, attune. Tend to the details before the cycle reaches fullness.`,
-      "Full Moon": `All is revealed ✦ Revisit the ${signName} New Moon seeds: Celebrate the harvest, witness what has matured, release what's complete, and receive the insight now illuminated.`,
+      "Full Moon": `All is illuminated. Witness what has come into form. Celebrate the harvest, and release what has completed its story.`,
       "Waning Gibbous": `Share your insight. Offer what you've learned. Give thanks for the wisdom gathered along the path.`,
       "Last Quarter": `A clearing opens. Let go with intention. Release what is complete and soften into forgiveness.`,
       "Waning Crescent": `Return to the quiet dark. Rest, empty, and dream. Let the old compost so the new can take root.`
