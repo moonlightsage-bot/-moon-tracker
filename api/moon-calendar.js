@@ -184,10 +184,10 @@ function generateLunarEvents(months = 12) {
       // Rich description with correspondences
       const newMoonDescription = [
         `🌑 New Moon in ${sunSign.name} ${sunSign.symbol}`,
+        `Ruled by ${sunSign.ruler}`,
         ``,
         `The Void • Pure Potential`,
         `Moon conjunct Sun in ${sunSign.name}`,
-        `Ruled by ${sunSign.ruler}`,
         ``,
         `✦ ESSENCE: ${sunSign.essence}`,
         ``,
@@ -217,17 +217,17 @@ function generateLunarEvents(months = 12) {
       // Rich description with correspondences
       const fullMoonDescription = [
         `🌕 Full Moon in ${moonSign.name} ${moonSign.symbol}`,
+        `Ruled by ${moonSign.ruler}`,
         ``,
         `The Revelation • Complete Illumination`,
         `Moon opposite Sun (Sun in ${sunSign.name})`,
-        `Ruled by ${moonSign.ruler}`,
         ``,
         `✦ ESSENCE: ${moonSign.essence}`,
         ``,
         `🌿 OILS: ${moonSign.oils.join(', ')}`,
         `💎 CRYSTALS: ${moonSign.crystals.join(', ')}`,
         ``,
-        `✦ PRACTICE: All is revealed. Revisit the ${moonSign.name} New Moon seeds: Celebrate the harvest, witness what has matured, release what is complete, and receive the insight now illuminated.`,
+        `✦ PRACTICE: Revisit the ${moonSign.name} New Moon seeds: Celebrate the harvest, witness what has matured, release what is complete, and receive the insight now illuminated.`,
         ``,
         `→ More Lunar Wisdom: https://moon-tracker-ten.vercel.app`,
         `→ Book a Reading: https://www.moonlightsage.co/offerings`,
