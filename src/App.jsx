@@ -354,29 +354,32 @@ function App() {
     return phases[0] // Default to New Moon
   }
 
-    const getMoonImagePath = (illumination) => {
-    // 27 images: 1,27 (black), 2 (thin wax), 8 (1st qtr), 14 (full), 21 (3rd qtr), 26 (thin wan)
-    let imageNumber
-    
-    if (illumination <= 0.015) {
-      // Black New Moon (0-1.5%) → Image 1
-      imageNumber = 1
-    } else if (illumination < 0.50) {
-      // Waxing (1.5-50%) → Images 2-8
-      imageNumber = Math.round(2 + ((illumination - 0.015) / 0.485) * 6)
-    } else if (illumination < 0.985) {
-      // Full + Waning (50-98.5%) → Images 9-26
-      imageNumber = Math.round(9 + ((illumination - 0.50) / 0.485) * 17)
-    } else {
-      // Black New Moon (98.5-100%) → Image 27
-      imageNumber = 27
-    }
-    
-    const clampedNumber = Math.max(1, Math.min(27, imageNumber))
-    console.log("Illumination:", (illumination * 100).toFixed(1) + "%", "→ Image:", clampedNumber)
-    
-    return `/moon-phases-real/${clampedNumber}.jpg`
+    const getMoonImagePath = (phase) => {
+  // 27 images mapping based on PHASE position (0-1):
+  // phase 0/1: New Moon → Image 1 or 27
+  // phase 0.25: First Quarter (50% lit) → Image ~7-8
+  // phase 0.5: Full Moon (100% lit) → Image 14
+  // phase 0.75: Last Quarter (50% lit) → Image ~20-21
+  
+  let imageNumber
+  
+  // Normalize phase to 0-1 range
+  let normalizedPhase = phase % 1
+  if (normalizedPhase < 0) normalizedPhase += 1
+  
+  if (normalizedPhase < 0.015 || normalizedPhase > 0.985) {
+    // New Moon (within 1.5% of 0 or 1) → Image 1 or 27
+    imageNumber = normalizedPhase < 0.5 ? 1 : 27
+  } else {
+    // Map phase 0.015-0.985 to images 2-26 (25 images)
+    imageNumber = Math.round(2 + ((normalizedPhase - 0.015) / (0.985 - 0.015)) * 24)
   }
+  
+  const clampedNumber = Math.max(1, Math.min(27, imageNumber))
+  console.log("Phase:", (normalizedPhase * 100).toFixed(1) + "%", "→ Image:", clampedNumber)
+  
+  return `/moon-phases-real/${clampedNumber}.jpg`
+}
 
   const getFullMoonHarvestNote = (signName) => {
     return `The Full Moon illuminates what was planted at the New Moon in ${signName} (6 months prior). What seeds of ${signName.toLowerCase()}'s essence are now bearing fruit?`
@@ -428,7 +431,7 @@ const getSignOilPurpose = (signName) => {
       <main>
         <div className="moon-display">
           <img 
-            src={getMoonImagePath(moonData.illumination)}
+            src={getMoonImagePath(moonData.phase)}
             alt={moonData.phaseInfo.name}
             className="moon-image"
           />
