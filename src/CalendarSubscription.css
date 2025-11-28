@@ -322,34 +322,19 @@
   text-align: center;
 }
 
-.apple-btn {
-  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+.apple-btn,
+.google-btn,
+.download-btn {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
   color: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.apple-btn:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-}
-
-.google-btn {
-  background: linear-gradient(135deg, #4285f4 0%, #34a853 50%, #fbbc05 75%, #ea4335 100%);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
-}
-
-.google-btn:hover {
-  box-shadow: 0 6px 16px rgba(66, 133, 244, 0.4);
-}
-
-.download-btn {
-  background: linear-gradient(135deg, #8b9d83 0%, #6b7d63 100%);
-  color: #f8f5f0;
-  box-shadow: 0 4px 12px rgba(139, 157, 131, 0.3);
-}
-
+.apple-btn:hover,
+.google-btn:hover,
 .download-btn:hover {
-  box-shadow: 0 6px 16px rgba(139, 157, 131, 0.4);
+  background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* Manual URL Section */
