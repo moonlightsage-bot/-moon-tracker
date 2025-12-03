@@ -325,6 +325,27 @@ main {
   opacity: 0.9;
 }
 
+.ruler-note {
+  color: var(--gold);
+  font-size: 0.88rem;
+  margin-top: 0.5rem;
+  opacity: 0.85;
+}
+
+.crystals-label {
+  color: var(--dusty-blue);
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(108, 131, 146, 0.2);
+}
+
+.crystals-label strong {
+  color: var(--gold);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
 .six-month-note {
   color: var(--gold);
   font-size: 0.85rem;

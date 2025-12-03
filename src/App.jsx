@@ -93,18 +93,18 @@ function App() {
     const day = date.getDate()
     
     const signs = [
-      { name: "Aries", symbol: "♈︎", start: [3, 21], end: [4, 19] },
-      { name: "Taurus", symbol: "♉︎", start: [4, 20], end: [5, 20] },
-      { name: "Gemini", symbol: "♊︎", start: [5, 21], end: [6, 20] },
-      { name: "Cancer", symbol: "♋︎", start: [6, 21], end: [7, 22] },
-      { name: "Leo", symbol: "♌︎", start: [7, 23], end: [8, 22] },
-      { name: "Virgo", symbol: "♍︎", start: [8, 23], end: [9, 22] },
-      { name: "Libra", symbol: "♎︎", start: [9, 23], end: [10, 22] },
-      { name: "Scorpio", symbol: "♏︎", start: [10, 23], end: [11, 21] },
-      { name: "Sagittarius", symbol: "♐︎", start: [11, 22], end: [12, 21] },
-      { name: "Capricorn", symbol: "♑︎", start: [12, 22], end: [1, 19] },
-      { name: "Aquarius", symbol: "♒︎", start: [1, 20], end: [2, 18] },
-      { name: "Pisces", symbol: "♓︎", start: [2, 19], end: [3, 20] }
+      { name: "Aries", symbol: "♈︎", ruler: "Mars ♂", start: [3, 21], end: [4, 19] },
+      { name: "Taurus", symbol: "♉︎", ruler: "Venus ♀", start: [4, 20], end: [5, 20] },
+      { name: "Gemini", symbol: "♊︎", ruler: "Mercury ☿", start: [5, 21], end: [6, 20] },
+      { name: "Cancer", symbol: "♋︎", ruler: "Moon ☽", start: [6, 21], end: [7, 22] },
+      { name: "Leo", symbol: "♌︎", ruler: "Sun ☉", start: [7, 23], end: [8, 22] },
+      { name: "Virgo", symbol: "♍︎", ruler: "Mercury ☿", start: [8, 23], end: [9, 22] },
+      { name: "Libra", symbol: "♎︎", ruler: "Venus ♀", start: [9, 23], end: [10, 22] },
+      { name: "Scorpio", symbol: "♏︎", ruler: "Mars ♂", start: [10, 23], end: [11, 21] },
+      { name: "Sagittarius", symbol: "♐︎", ruler: "Jupiter ♃", start: [11, 22], end: [12, 21] },
+      { name: "Capricorn", symbol: "♑︎", ruler: "Saturn ♄", start: [12, 22], end: [1, 19] },
+      { name: "Aquarius", symbol: "♒︎", ruler: "Saturn ♄", start: [1, 20], end: [2, 18] },
+      { name: "Pisces", symbol: "♓︎", ruler: "Jupiter ♃", start: [2, 19], end: [3, 20] }
     ]
     
     for (const sign of signs) {
@@ -121,6 +121,23 @@ function App() {
       }
     }
     return signs[11] // Default to Pisces
+  }
+
+  const getPlanetaryRulerOils = (rulerName) => {
+    // Extract just the planet name (e.g., "Mars ♂" -> "Mars")
+    const planetName = rulerName.split(' ')[0]
+    
+    const rulerOils = {
+      "Sun": ["Frankincense", "Cinnamon", "Helichrysum"],
+      "Moon": ["Jasmine", "Sandalwood", "Myrrh"],
+      "Mercury": ["Lavender", "Peppermint", "Basil"],
+      "Venus": ["Rose", "Ylang Ylang", "Geranium"],
+      "Mars": ["Ginger", "Black Pepper", "Cinnamon"],
+      "Jupiter": ["Hyssop", "Sage", "Clary Sage"],
+      "Saturn": ["Cypress", "Myrrh", "Patchouli"]
+    }
+    
+    return rulerOils[planetName] || ["Frankincense", "Myrrh", "Sandalwood"]
   }
 
   const getDaysUntilNextPhase = (currentPhase) => {
@@ -265,7 +282,7 @@ function App() {
    const phases = [
   {
     name: "New Moon",
-    range: [0, 0.01],
+    range: [0, 0.0625],
     archetype: "The Void • Pure Potential",
     wisdom: "In darkness, all possibilities exist. This is the sacred pause before creation—the breath between worlds. Rest in the mystery.",
     quality: "Initiation, planting intentions, pure potential",
@@ -275,7 +292,7 @@ function App() {
   },
   {
     name: "Waxing Crescent",
-    range: [0.01, 0.21875],  // Extended until almost First Quarter
+    range: [0.0625, 0.21875],  // Extended until almost First Quarter
     archetype: "The Seedling • First Light",
     wisdom: "What you planted in darkness now stirs. Tender shoots reach toward light. Nurture the new with patience.",
     quality: "First action, commitment, building momentum",
@@ -295,7 +312,7 @@ function App() {
   },
   {
     name: "Waxing Gibbous",
-    range: [0.28125, 0.495],
+    range: [0.28125, 0.4375],
     archetype: "The Refiner • Almost There",
     wisdom: "Nearly full, yet still becoming. Adjust, refine, perfect. The harvest approaches—prepare with devotion.",
     quality: "Refinement, patience, final adjustments",
@@ -305,7 +322,7 @@ function App() {
   },
   {
     name: "Full Moon",
-    range: [0.495, 0.505],
+    range: [0.4375, 0.5625],
     archetype: "The Revelation • Complete Illumination",
     wisdom: "All is revealed. See clearly what was hidden. This is peak manifestation—celebrate, release, acknowledge.",
     quality: "Culmination, revelation, illumination, completion",
@@ -315,7 +332,7 @@ function App() {
   },
   {
     name: "Waning Gibbous",
-    range: [0.505, 0.71875],
+    range: [0.5625, 0.71875],
     archetype: "The Teacher • Sharing Wisdom",
     wisdom: "Light diminishes, but wisdom remains. Share what you've learned. Gratitude transforms experience into treasure.",
     quality: "Dissemination, sharing, gratitude, integration",
@@ -335,7 +352,7 @@ function App() {
   },
   {
     name: "Waning Crescent",
-    range: [0.78125, 0.99],
+    range: [0.78125, 1],
     archetype: "The Crone • Wisdom Before Silence",
     wisdom: "The final sliver holds all the mysteries. Rest, dream, integrate. The void approaches—surrender to the cycle.",
     quality: "Dissolution, surrender, composting, liminality",
@@ -345,13 +362,8 @@ function App() {
   }
     ]
 
-     for (let phaseData of phases) {
-      // Special case for New Moon (wraps around 0/1)
-      if (phaseData.name === "New Moon") {
-        if (phase >= 0.99 || phase < 0.01) {
-          return phaseData
-        }
-      } else if (phase >= phaseData.range[0] && phase < phaseData.range[1]) {
+    for (let phaseData of phases) {
+      if (phase >= phaseData.range[0] && phase < phaseData.range[1]) {
         return phaseData
       }
     }
@@ -360,31 +372,31 @@ function App() {
   }
 
     const getMoonImagePath = (phase) => {
-  // 27 images mapping based on PHASE position (0-1):
-  // phase 0/1: New Moon → Image 1 or 27
-  // phase 0.25: First Quarter (50% lit) → Image ~7-8
-  // phase 0.5: Full Moon (100% lit) → Image 14
-  // phase 0.75: Last Quarter (50% lit) → Image ~20-21
-  
-  let imageNumber
-  
-  // Normalize phase to 0-1 range
-  let normalizedPhase = phase % 1
-  if (normalizedPhase < 0) normalizedPhase += 1
-  
-  if (normalizedPhase < 0.015 || normalizedPhase > 0.985) {
-    // New Moon (within 1.5% of 0 or 1) → Image 1 or 27
-    imageNumber = normalizedPhase < 0.5 ? 1 : 27
-  } else {
-    // Map phase 0.015-0.985 to images 2-26 (25 images)
-    imageNumber = Math.round(2 + ((normalizedPhase - 0.015) / (0.985 - 0.015)) * 24)
+    // 27 images mapping based on PHASE position (0-1):
+    // phase 0/1: New Moon → Image 1 or 27
+    // phase 0.25: First Quarter (50% lit) → Image ~7-8
+    // phase 0.5: Full Moon (100% lit) → Image 14
+    // phase 0.75: Last Quarter (50% lit) → Image ~20-21
+    
+    let imageNumber
+    
+    // Normalize phase to 0-1 range
+    let normalizedPhase = phase % 1
+    if (normalizedPhase < 0) normalizedPhase += 1
+    
+    if (normalizedPhase < 0.015 || normalizedPhase > 0.985) {
+      // New Moon (within 1.5% of 0 or 1) → Image 1 or 27
+      imageNumber = normalizedPhase < 0.5 ? 1 : 27
+    } else {
+      // Map phase 0.015-0.985 to images 2-26 (25 images)
+      imageNumber = Math.round(2 + ((normalizedPhase - 0.015) / (0.985 - 0.015)) * 24)
+    }
+    
+    const clampedNumber = Math.max(1, Math.min(27, imageNumber))
+    console.log("Phase:", (normalizedPhase * 100).toFixed(1) + "%", "→ Image:", clampedNumber)
+    
+    return `/moon-phases-real/${clampedNumber}.jpg`
   }
-  
-  const clampedNumber = Math.max(1, Math.min(27, imageNumber))
-  console.log("Phase:", (normalizedPhase * 100).toFixed(1) + "%", "→ Image:", clampedNumber)
-  
-  return `/moon-phases-real/${clampedNumber}.jpg`
-}
 
   const getFullMoonHarvestNote = (signName) => {
     return `The Full Moon illuminates what was planted at the New Moon in ${signName} (6 months prior). What seeds of ${signName.toLowerCase()}'s essence are now bearing fruit?`
@@ -502,27 +514,30 @@ const getSignOilPurpose = (signName) => {
   </div>
 </div>
         <div className="correspondences">
+          {/* Card 1: Moon Phase */}
           <div className="correspondence-card">
-            <h4>Phase Oils ({moonData.phaseInfo.name})</h4>
-  <p>{moonData.phaseInfo.oils.join(", ")}</p>
-  <p className="oil-purpose">{getPhaseOilPurpose(moonData.phaseInfo.name)}</p>
-</div>
-
-          <div className="correspondence-card">
-  <h4>Sign Oils ({moonData.zodiacSign.name})</h4>
-  <p>{getSignOils(moonData.zodiacSign.name).join(", ")}</p>
-<p className="oil-purpose">{getSignOilPurpose(moonData.zodiacSign.name)}</p>
-</div>
-          
-          <div className="correspondence-card">
-            <h4>Phase Crystals</h4>
-            <p>{moonData.phaseInfo.crystals.join(", ")}</p>
+            <h4>☽ Moon Phase Oils ({moonData.phaseInfo.name})</h4>
+            <p>{moonData.phaseInfo.oils.join(", ")}</p>
+            <p className="oil-purpose">{getPhaseOilPurpose(moonData.phaseInfo.name)}</p>
+            <p className="crystals-label"><strong>Crystals:</strong> {moonData.phaseInfo.crystals.join(", ")}</p>
           </div>
 
+          {/* Card 2: Moon Sign */}
           <div className="correspondence-card">
-            <h4>Sign Crystals ({moonData.zodiacSign.name})</h4>
-            <p>{getSignCrystals(moonData.zodiacSign.name).join(", ")}</p>
-            <p className="oil-purpose">Ruled by {moonData.zodiacSign.ruler}</p>
+            <h4>☽ Moon Sign Oils ({moonData.zodiacSign.name} {moonData.zodiacSign.symbol})</h4>
+            <p>{getSignOils(moonData.zodiacSign.name).join(", ")}</p>
+            <p className="oil-purpose">{getSignOilPurpose(moonData.zodiacSign.name)}</p>
+            <p className="ruler-note">Ruled by {moonData.zodiacSign.ruler}</p>
+            <p className="crystals-label"><strong>Crystals:</strong> {getSignCrystals(moonData.zodiacSign.name).join(", ")}</p>
+          </div>
+
+          {/* Card 3: Sun Sign */}
+          <div className="correspondence-card">
+            <h4>☉ Sun Sign Oils ({getSunSign(currentTime).name} {getSunSign(currentTime).symbol})</h4>
+            <p>{getSignOils(getSunSign(currentTime).name).join(", ")}</p>
+            <p className="oil-purpose">{getSignOilPurpose(getSunSign(currentTime).name)}</p>
+            <p className="ruler-note">Ruled by {getSunSign(currentTime).ruler} ({getPlanetaryRulerOils(getSunSign(currentTime).ruler).join(", ")})</p>
+            <p className="crystals-label"><strong>Crystals:</strong> {getSignCrystals(getSunSign(currentTime).name).join(", ")}</p>
           </div>
           
           <div className="correspondence-card">
