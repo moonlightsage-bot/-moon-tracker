@@ -265,7 +265,7 @@ function App() {
    const phases = [
   {
     name: "New Moon",
-    range: [0, 0.0625],
+    range: [0, 0.01],
     archetype: "The Void • Pure Potential",
     wisdom: "In darkness, all possibilities exist. This is the sacred pause before creation—the breath between worlds. Rest in the mystery.",
     quality: "Initiation, planting intentions, pure potential",
@@ -275,7 +275,7 @@ function App() {
   },
   {
     name: "Waxing Crescent",
-    range: [0.0625, 0.21875],  // Extended until almost First Quarter
+    range: [0.01, 0.21875],  // Extended until almost First Quarter
     archetype: "The Seedling • First Light",
     wisdom: "What you planted in darkness now stirs. Tender shoots reach toward light. Nurture the new with patience.",
     quality: "First action, commitment, building momentum",
@@ -295,7 +295,7 @@ function App() {
   },
   {
     name: "Waxing Gibbous",
-    range: [0.28125, 0.4375],
+    range: [0.28125, 0.495],
     archetype: "The Refiner • Almost There",
     wisdom: "Nearly full, yet still becoming. Adjust, refine, perfect. The harvest approaches—prepare with devotion.",
     quality: "Refinement, patience, final adjustments",
@@ -305,7 +305,7 @@ function App() {
   },
   {
     name: "Full Moon",
-    range: [0.4375, 0.5625],
+    range: [0.495, 0.505],
     archetype: "The Revelation • Complete Illumination",
     wisdom: "All is revealed. See clearly what was hidden. This is peak manifestation—celebrate, release, acknowledge.",
     quality: "Culmination, revelation, illumination, completion",
@@ -315,7 +315,7 @@ function App() {
   },
   {
     name: "Waning Gibbous",
-    range: [0.5625, 0.71875],
+    range: [0.505, 0.71875],
     archetype: "The Teacher • Sharing Wisdom",
     wisdom: "Light diminishes, but wisdom remains. Share what you've learned. Gratitude transforms experience into treasure.",
     quality: "Dissemination, sharing, gratitude, integration",
@@ -335,7 +335,7 @@ function App() {
   },
   {
     name: "Waning Crescent",
-    range: [0.78125, 1],
+    range: [0.78125, 0.99],
     archetype: "The Crone • Wisdom Before Silence",
     wisdom: "The final sliver holds all the mysteries. Rest, dream, integrate. The void approaches—surrender to the cycle.",
     quality: "Dissolution, surrender, composting, liminality",
@@ -345,8 +345,13 @@ function App() {
   }
     ]
 
-    for (let phaseData of phases) {
-      if (phase >= phaseData.range[0] && phase < phaseData.range[1]) {
+     for (let phaseData of phases) {
+      // Special case for New Moon (wraps around 0/1)
+      if (phaseData.name === "New Moon") {
+        if (phase >= 0.99 || phase < 0.01) {
+          return phaseData
+        }
+      } else if (phase >= phaseData.range[0] && phase < phaseData.range[1]) {
         return phaseData
       }
     }
