@@ -589,7 +589,7 @@ const getSignOilPurpose = (signName) => {
         </div>
       </main>
 
-<p className="calendar-promo">Receive New Moon & Full Moon, Solstice & Equinox events directly in your calendar.</p>
+<p className="calendar-promo">Subscribe to Lunar Events. Receive New Moon & Full Moon events, Solstices & Equinoxes directly in your calendar.</p>
       <CalendarSubscription />
      
       <footer>
