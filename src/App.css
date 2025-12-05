@@ -180,45 +180,34 @@ main {
 
 .element-badges {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
   margin-top: 1rem;
   justify-content: center;
-  align-items: center;
 }
 
 .element-badge {
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
   padding: 0;
   border-radius: 0;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
   background: transparent;
   border: none;
-  opacity: 1;
-}
-
-.element-badge:not(:last-child)::after {
-  content: "•";
-  margin-left: 1rem;
-  color: var(--cream);
-  opacity: 0.3;
+  color: var(--dusty-blue);
+  opacity: 0.85;
 }
 
 .phase-quality {
-  color: var(--cream);
-  opacity: 0.8;
+  color: var(--sage);
 }
 
 .sign-element {
-  color: var(--cream);
-  opacity: 0.8;
+  color: var(--dusty-blue);
 }
 
 .modality {
   color: var(--gold);
-  opacity: 0.9;
 }
   color: var(--dusty-blue);
 }

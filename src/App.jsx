@@ -318,7 +318,7 @@ function App() {
   },
   {
     name: "Waxing Gibbous",
-    range: [0.28125, 0.483],  // Extended until 12 hours before Full Moon
+    range: [0.28125, 0.4831],  // Until 12 hours before Full Moon
     archetype: "The Refiner • Almost There",
     wisdom: "Nearly full, yet still becoming. Adjust, refine, perfect. The harvest approaches—prepare with devotion.",
     quality: "Refinement, patience, final adjustments",
@@ -328,7 +328,7 @@ function App() {
   },
   {
     name: "Full Moon",
-    range: [0.483, 0.517],  // 12 hours before to 12 hours after exact Full Moon
+    range: [0.4831, 0.5169],  // Exactly 12 hours before to 12 hours after (24 hours total)
     archetype: "The Revelation • Complete Illumination",
     wisdom: "All is revealed. See clearly what was hidden. This is peak manifestation—celebrate, release, acknowledge.",
     quality: "Culmination, revelation, illumination, completion",
@@ -338,7 +338,7 @@ function App() {
   },
   {
     name: "Waning Gibbous",
-    range: [0.517, 0.71875],  // Starts 12 hours after Full Moon
+    range: [0.5169, 0.71875],  // Starts exactly 12 hours after Full Moon
     archetype: "The Teacher • Sharing Wisdom",
     wisdom: "Light diminishes, but wisdom remains. Share what you've learned. Gratitude transforms experience into treasure.",
     quality: "Dissemination, sharing, gratitude, integration",
@@ -589,7 +589,7 @@ const getSignOilPurpose = (signName) => {
         </div>
       </main>
 
-<p className="calendar-promo">Subscribe to Lunar Events. Receive New Moon & Full Moon events, Solstices & Equinoxes directly in your calendar.</p>
+<p className="calendar-promo">Subscribe to Lunar Calendar. Receive New & Full Moon, Solstices & Equinoxes reminders directly in your calendar.</p>
       <CalendarSubscription />
      
       <footer>
