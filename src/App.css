@@ -199,7 +199,8 @@ main {
 }
 
 .phase-quality {
-  color: var(--sage);
+  color: var(--cream);
+  opacity: 0.8;
 }
 
 .sign-element {
