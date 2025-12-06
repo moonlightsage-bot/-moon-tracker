@@ -607,15 +607,6 @@ const getSignOilPurpose = (signName) => {
   <p className="calendar-promo">Subscribe to Lunar Calendar. Receive New & Full Moon, Solstices & Equinoxes reminders directly in your calendar.</p>
   <CalendarSubscription />
 </div>
-
-<div className="add-to-home">
-  <p className="home-screen-icon">📱</p>
-  <p className="home-screen-text">Add to your home screen for quick access to daily lunar guidance</p>
-  <p className="home-screen-instructions">
-    <strong>iPhone:</strong> Tap <span className="icon-hint">⎙</span> → "Add to Home Screen" • 
-    <strong>Android:</strong> Tap <span className="icon-hint">⋮</span> → "Add to Home Screen"
-  </p>
-</div>
      
       <footer>
         <p>Phenomenological geocentric perspective • Classical tropical astrology</p>
