@@ -41,6 +41,20 @@ function App() {
     return () => clearInterval(interval)
   }, [])
 
+  // Handle hash navigation (e.g., #calendar)
+  useEffect(() => {
+    const hash = window.location.hash
+    if (hash) {
+      // Small delay to ensure content is rendered
+      setTimeout(() => {
+        const element = document.querySelector(hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 100)
+    }
+  }, [])
+
   const getApproxMoonSign = (date) => {
     try {
       // Create an observer (we use a generic Earth observer)
@@ -515,7 +529,7 @@ const getSignOilPurpose = (signName) => {
       <strong>Sign ({moonData.zodiacSign.element}):</strong> {moonData.zodiacSign.name} brings {moonData.zodiacSign.element === 'Fire' ? 'passion, will, and transformative heat' : moonData.zodiacSign.element === 'Water' ? 'emotional depth, intuition, and feeling' : moonData.zodiacSign.element === 'Earth' ? 'grounding, stability, and manifestation' : 'mental clarity, communication, and swift movement'}
     </div>
     <div className="alchemy-layer">
-      <strong>Modality ({moonData.zodiacSign.modality}):</strong> {moonData.zodiacSign.modality} energy {moonData.zodiacSign.modality === 'Cardinal' ? 'initiates new beginnings and sets things in motion' : moonData.zodiacSign.modality === 'Fixed' ? 'sustains, concentrates, and builds through persistence' : 'adapts, transitions, and transforms flexibly'}
+      <strong>Modality ({moonData.zodiacSign.modality}):</strong> {moonData.zodiacSign.modality} energy {moonData.zodiacSign.modality === 'Cardinal' ? 'initiates and sets things in motion' : moonData.zodiacSign.modality === 'Fixed' ? 'sustains, concentrates, and builds through persistence' : 'adapts, transitions, and transforms flexibly'}
     </div>
   </div>
 </div>
@@ -589,8 +603,19 @@ const getSignOilPurpose = (signName) => {
         </div>
       </main>
 
-<p className="calendar-promo">Subscribe to Lunar Calendar. Receive New & Full Moon, Solstices & Equinoxes reminders directly in your calendar.</p>
-      <CalendarSubscription />
+<div id="calendar" className="calendar-section">
+  <p className="calendar-promo">Subscribe to Lunar Calendar. Receive New & Full Moon, Solstices & Equinoxes reminders directly in your calendar.</p>
+  <CalendarSubscription />
+</div>
+
+<div className="add-to-home">
+  <p className="home-screen-icon">📱</p>
+  <p className="home-screen-text">Add to your home screen for quick access to daily lunar guidance</p>
+  <p className="home-screen-instructions">
+    <strong>iPhone:</strong> Tap <span className="icon-hint">⎙</span> → "Add to Home Screen" • 
+    <strong>Android:</strong> Tap <span className="icon-hint">⋮</span> → "Add to Home Screen"
+  </p>
+</div>
      
       <footer>
         <p>Phenomenological geocentric perspective • Classical tropical astrology</p>
