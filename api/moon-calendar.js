@@ -176,7 +176,7 @@ function generateLunarEvents(monthsBack = 12, monthsForward = 12) {
   const endDate = new Date();
   endDate.setMonth(endDate.getMonth() + monthsForward);
   
-  moonPhases.forEach(phase => {
+   phases.forEach(phase => {
     if (phase.type === 'new') {
       const sunSign = getSunSign(phase.date);
       
