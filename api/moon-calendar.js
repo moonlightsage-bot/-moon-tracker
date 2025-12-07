@@ -176,9 +176,12 @@ function generateLunarEvents(monthsBack = 12, monthsForward = 12) {
   const endDate = new Date();
   endDate.setMonth(endDate.getMonth() + monthsForward);
   
+  // Get precise moon phases using astronomy-engine
   const phases = findMoonPhases(startDate, monthsBack + monthsForward);
   
   phases.forEach(phase => {
+    if (phase.type === 'new') {
+      const sunSign = getSunSign(phase.date);
       
       // Rich description with correspondences
       const newMoonDescription = [
@@ -226,7 +229,7 @@ function generateLunarEvents(monthsBack = 12, monthsForward = 12) {
         `🌿 OILS: ${moonSign.oils.join(', ')}`,
         `💎 CRYSTALS: ${moonSign.crystals.join(', ')}`,
         ``,
-        `✦ PRACTICE: Revisit the ${moonSign.name} New Moon seeds: Celebrate the harvest, witness what has matured, release what is complete, and receive the insight now illuminated.`,
+        `✦ PRACTICE: All is revealed. Revisit the ${moonSign.name} New Moon seeds: Celebrate the harvest, witness what has matured, release what's complete, and receive the insight now illuminated.`,
         ``,
         `→ More Lunar Wisdom: https://moon-tracker-ten.vercel.app`,
         `→ Book a Reading: https://www.moonlightsage.co/offerings`,
@@ -331,7 +334,8 @@ function generateLunarEvents(monthsBack = 12, monthsForward = 12) {
     }
   ];
   
-  for (let year = new Date().getFullYear(); year <= new Date().getFullYear() + 1; year++) {
+  // Include gateways from past and future years
+  for (let year = now.getFullYear() - 1; year <= now.getFullYear() + 1; year++) {
     for (const gw of gateways) {
       const date = new Date(Date.UTC(year, gw.month - 1, gw.day, 0, 0, 0));
       if (date >= startDate && date < endDate) {
@@ -390,7 +394,7 @@ function generateICalContent(events) {
 
 module.exports = function handler(req, res) {
   try {
-    const events = generateLunarEvents(12);
+    const events = generateLunarEvents(12, 12);
     const ical = generateICalContent(events);
     
     res.setHeader('Content-Type', 'text/calendar; charset=utf-8');
