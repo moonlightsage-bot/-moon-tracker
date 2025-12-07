@@ -176,7 +176,6 @@ function generateLunarEvents(monthsBack = 12, monthsForward = 12) {
   const endDate = new Date();
   endDate.setMonth(endDate.getMonth() + monthsForward);
   
-  // Get precise moon phases using astronomy-engine
   const phases = findMoonPhases(startDate, monthsBack + monthsForward);
   
   phases.forEach(phase => {
