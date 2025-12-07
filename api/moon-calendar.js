@@ -168,14 +168,13 @@ function findMoonPhases(startDate, months) {
   return uniquePhases.sort((a, b) => a.date - b.date);
 }
 
-function generateLunarEvents(months = 12) {
+function generateLunarEvents(monthsBack = 12, monthsForward = 12) {
   const events = [];
   const now = new Date();
+  const startDate = new Date();
+  startDate.setMonth(startDate.getMonth() - monthsBack);
   const endDate = new Date();
-  endDate.setMonth(endDate.getMonth() + months);
-  
-  // Get precise moon phases using astronomy-engine
-  const moonPhases = findMoonPhases(now, months);
+  endDate.setMonth(endDate.getMonth() + monthsForward);
   
   moonPhases.forEach(phase => {
     if (phase.type === 'new') {
@@ -335,7 +334,7 @@ function generateLunarEvents(months = 12) {
   for (let year = new Date().getFullYear(); year <= new Date().getFullYear() + 1; year++) {
     for (const gw of gateways) {
       const date = new Date(Date.UTC(year, gw.month - 1, gw.day, 0, 0, 0));
-      if (date >= new Date() && date < endDate) {
+      if (date >= startDate && date < endDate) {
         events.push({
           type: 'gateway',
           date: date,
