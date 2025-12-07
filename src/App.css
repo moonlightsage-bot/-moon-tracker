@@ -204,13 +204,13 @@ main {
 }
 
 .sign-element {
-  color: var(--dusty-blue);
+  color: var(--gold);
+  opacity: 0.9;
 }
 
 .modality {
   color: var(--gold);
-}
-  color: var(--dusty-blue);
+  opacity: 0.9;
 }
 
 /* Elemental Alchemy Section */
