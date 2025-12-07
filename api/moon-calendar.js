@@ -176,9 +176,10 @@ function generateLunarEvents(monthsBack = 12, monthsForward = 12) {
   const endDate = new Date();
   endDate.setMonth(endDate.getMonth() + monthsForward);
   
-   phases.forEach(phase => {
-    if (phase.type === 'new') {
-      const sunSign = getSunSign(phase.date);
+  // Get precise moon phases using astronomy-engine
+  const phases = findMoonPhases(startDate, monthsBack + monthsForward);
+  
+  phases.forEach(phase => {
       
       // Rich description with correspondences
       const newMoonDescription = [
